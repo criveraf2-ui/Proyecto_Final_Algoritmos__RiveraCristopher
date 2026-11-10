@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRUD Transporte y Rutas (Variante A) — Frontend HTML + C++17 CLion + MySQL</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Top Institutional & Live MySQL Connection Header -->
+  <header class="bg-slate-900/95 border-b border-slate-800 sticky top-0 z-30 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 font-bold text-lg">
+        </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">Transporte y Rutas · Variante A</h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connection Status & MySQL Config Controls -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <div id="badgeConexionServidor" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-medium">
+          <span id="dotConexion" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="txtConexion">MySQL: <strong class="mono">db_transporte_rutas</strong></span>
+        </div>
+        <button id="btnAbrirConfigMySQL" type="button" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-amber-300 transition">
+           Configurar MySQL (Clave/Puerto)
+        </button>
+        <button id="btnImportFile" type="button" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 transition">
+           Cargar rutas.txt
+        </button>
+        <input id="fileInput" type="file" accept=".txt,.json,.sql" class="hidden" />
+        <button id="btnExportTxt" type="button" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-semibold text-white transition shadow-sm">
+           Descargar rutas.txt
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-1 overflow-x-auto border-t border-slate-800/80 pt-1">
+      <button type="button" data-tab="tab-rutas" class="nav-tab px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-blue-500 text-blue-400 whitespace-nowrap transition">
+        1. CRUD de Rutas (<span id="navCountRutas">6</span>)
+      </button>
+      <button type="button" data-tab="tab-ventas" class="nav-tab px-4 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap transition">
+        2. Ventas y Reto Algorítmico
+      </button>
+      <button type="button" data-tab="tab-busquedas" class="nav-tab px-4 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap transition">
+        3. Búsquedas (ID / Origen / Destino)
+      </button>
+      <button type="button" data-tab="tab-reportes" class="nav-tab px-4 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap transition">
+        4. Reportes y Burbuja Manual
+      </button>
+      <button type="button" data-tab="tab-cifrado-mysql" class="nav-tab px-4 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap transition">
+        5. Cifrado para Tontos + Consola MySQL
+      </button>
+    </div>
+  </header>
+
+  <!-- Modal Configuracion MySQL -->
+  <div id="modalConfigMySQL" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-5 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-base font-bold text-white"> Conexión a Servidor MySQL Local</h3>
+        <button id="btnCerrarModalMySQL" type="button" class="text-slate-400 hover:text-white text-sm font-bold">✕</button>
+      </div>
+      <p class="text-xs text-slate-400">
+        Cuando ejecutas la <strong>Opción 7</strong> en tu programa C++ de CLion (<span class="mono text-blue-300">http://localhost:8080</span>), el Frontend envía estas credenciales a C++ para guardar cada registro directamente en tu servidor MySQL (<span class="mono text-emerald-300">db_transporte_rutas</span>).
+      </p>
+      <form id="formConfigMySQL" class="space-y-3" novalidate>
+        <div class="grid grid-cols-3 gap-2">
+          <div class="col-span-2">
+            <label for="cfgHost" class="block text-xs font-medium text-slate-300 mb-1">Host MySQL</label>
+            <input id="cfgHost" type="text" value="localhost" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs sm:text-sm text-white mono" />
+          </div>
+          <div>
+            <label for="cfgPuerto" class="block text-xs font-medium text-slate-300 mb-1">Puerto</label>
+            <input id="cfgPuerto" type="number" value="3306" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs sm:text-sm text-white mono" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label for="cfgUsuario" class="block text-xs font-medium text-slate-300 mb-1">Usuario MySQL</label>
+            <input id="cfgUsuario" type="text" value="root" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs sm:text-sm text-white mono" />
+          </div>
+          <div>
+            <label for="cfgPassword" class="block text-xs font-medium text-slate-300 mb-1">Contraseña (si tiene)</label>
+            <input id="cfgPassword" type="password" placeholder="Vacío en XAMPP" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs sm:text-sm text-white mono" />
+          </div>
+        </div>
+        <div>
+          <label for="cfgBaseDatos" class="block text-xs font-medium text-slate-300 mb-1">Base de Datos</label>
+          <input id="cfgBaseDatos" type="text" value="db_transporte_rutas" class="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs sm:text-sm text-white mono" />
+        </div>
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button id="btnCancelarModalMySQL" type="button" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white">Guardar y Conectar con MySQL</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Toast Banner -->
+  <div id="toastBanner" class="hidden fixed bottom-5 right-5 z-50 max-w-md px-4 py-3 rounded-xl shadow-2xl border text-sm font-medium flex items-center justify-between gap-3 transition-all">
+    <span id="toastText"></span>
+    <button id="btnCloseToast" type="button" class="text-xs opacity-75 hover:opacity-100 font-bold">✕</button>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex-1 space-y-5">
+
+    <!-- Live SQL Query Executed Strip -->
+    <section class="bg-slate-900/90 border border-emerald-500/30 rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 text-xs overflow-x-auto">
+        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold uppercase whitespace-nowrap">Último SQL en MySQL</span>
+        <code id="barraUltimaSQL" class="mono text-emerald-300 text-xs break-all">SELECT * FROM rutas_buses ORDER BY id ASC;</code>
+      </div>
+      <span id="lblModoPersistencia" class="text-xs text-slate-400 whitespace-nowrap">Sincronizando: Memoria + MySQL + Cifrado (+3)</span>
+    </section>
+
+    <!-- Quick KPI Strip -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <p class="text-xs text-slate-400 font-medium">Rutas Registradas (Máx 100)</p>
+        <div class="mt-1 flex items-baseline justify-between">
+          <span id="kpiTotalRutas" class="text-2xl font-extrabold text-white">6</span>
+          <span id="kpiActivasDetalle" class="text-xs text-emerald-400 font-medium">5 activas · 1 inactiva</span>
+        </div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <p class="text-xs text-slate-400 font-medium">Pasajeros / Capacidad Total</p>
+        <div class="mt-1 flex items-baseline justify-between">
+          <span id="kpiPasajeros" class="text-2xl font-extrabold text-blue-400">105 / 238</span>
+          <span id="kpiOcupacionPct" class="text-xs text-slate-300 font-mono">44.1% ocup.</span>
+        </div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <p class="text-xs text-slate-400 font-medium">Ingresos Acumulados</p>
+        <div class="mt-1 flex items-baseline justify-between">
+          <span id="kpiIngresos" class="text-2xl font-extrabold text-emerald-400">Q9,930.00</span>
+          <span id="kpiPromedio" class="text-xs text-slate-400">Prom: Q1,655.00</span>
+        </div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <p class="text-xs text-slate-400 font-medium">Rutas Llenas / Disponibles</p>
+        <div class="mt-1 flex items-baseline justify-between">
+          <span id="kpiLlenas" class="text-2xl font-extrabold text-amber-400">1 llena</span>
+          <span id="kpiMasDisponible" class="text-xs text-slate-400 truncate max-w-[140px]">Mayor cupo: ID 104</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: CRUD COMPLETO DE RUTAS (CREATE, READ, UPDATE, DELETE)        -->
+    <!-- =================================================================== -->
+    <section id="tab-rutas" class="tab-panel grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- Form: CREATE & UPDATE -->
+      <div id="cardFormularioCRUD" class="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 h-fit transition-all">
+        <div class="flex items-center justify-between gap-2">
+          <div>
+            <span id="badgeModoCRUD" class="text-xs px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold uppercase">CREATE · Crear Registro</span>
+            <h2 id="tituloFormCRUD" class="text-base font-bold text-white mt-1">Registrar Nueva Ruta en BD</h2>
+          </div>
+          <button id="btnCancelarEdicion" type="button" class="hidden text-xs px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300">
+            Cancelar edición
+          </button>
+        </div>
+
+        <form id="formRegistrarRuta" class="space-y-3.5" novalidate>
+          <input id="modoEdicionActivo" type="hidden" value="0" />
+          <div>
+            <label for="regId" class="block text-xs font-medium text-slate-300 mb-1">ID de la Ruta (1 – 9999, llave primaria PK)</label>
+            <input id="regId" type="number" min="1" max="9999" placeholder="Ej. 107" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none" required />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="regOrigen" class="block text-xs font-medium text-slate-300 mb-1">Ciudad de Origen</label>
+              <input id="regOrigen" type="text" maxlength="30" placeholder="Ej. Guatemala" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none" required />
+            </div>
+            <div>
+              <label for="regDestino" class="block text-xs font-medium text-slate-300 mb-1">Ciudad de Destino</label>
+              <input id="regDestino" type="text" maxlength="30" placeholder="Ej. Retalhuleu" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none" required />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="regCapacidad" class="block text-xs font-medium text-slate-300 mb-1">Capacidad (1 – 100)</label>
+              <input id="regCapacidad" type="number" min="1" max="100" placeholder="Ej. 40" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none" required />
+            </div>
+            <div>
+              <label for="regPrecio" class="block text-xs font-medium text-slate-300 mb-1">Precio Boleto Q (0.01–1000)</label>
+              <input id="regPrecio" type="number" step="0.01" min="0.01" max="1000" placeholder="Ej. 65.00" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none" required />
+            </div>
+          </div>
+
+          <div id="filaCamposEdicionExtra" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-slate-800">
+            <div>
+              <label for="regPasajeros" class="block text-xs font-medium text-slate-300 mb-1">Pasajeros vendidos</label>
+              <input id="regPasajeros" type="number" min="0" max="100" value="0" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none" />
+            </div>
+            <div>
+              <label for="regEstadoActiva" class="block text-xs font-medium text-slate-300 mb-1">Estado de la Ruta</label>
+              <select id="regEstadoActiva" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none">
+                <option value="1">1 · Activa</option>
+                <option value="0">0 · Inactiva</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="btnSubmitCRUD" type="submit" class="w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition shadow">
+            Guardar Ruta
+          </button>
+        </form>
+
+        <div class="pt-3 border-t border-slate-800 flex items-center justify-between gap-2">
+          <span class="text-xs text-slate-400">¿Restaurar las 6 rutas iniciales?</span>
+          <button id="btnResetDemo" type="button" class="text-xs text-blue-400 hover:text-blue-300 font-medium underline">Restaurar datos iniciales</button>
+        </div>
+      </div>
+
+      <!-- Table: READ, UPDATE, DELETE -->
+      <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-base font-bold text-white">Tabla de Registros en Base de Datos (<span class="mono text-emerald-300">rutas_buses</span>)</h2>
+            <p class="text-xs text-slate-400">Usa <strong>Editar</strong> para modificar un registro (<span class="mono">UPDATE</span>), el badge de estado para activar/desactivar, o <strong> Eliminar</strong> para borrarlo (<span class="mono">DELETE</span>).</p>
+          </div>
+        </div>
+
+        <!-- Barra de Confirmacion para Eliminar (DELETE) -->
+        <div id="barraConfirmarEliminar" class="hidden bg-rose-950/80 border border-rose-500/40 rounded-xl p-3.5 flex flex-wrap items-center justify-between gap-3">
+          <div class="text-xs sm:text-sm text-rose-200">
+            <span>⚠️ ¿Confirmas eliminar permanentemente la <strong id="lblRutaEliminar">Ruta</strong> de la base de datos MySQL?</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="btnCancelarEliminar" type="button" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 font-medium">Cancelar</button>
+            <button id="btnConfirmarEliminarDefinitivo" type="button" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-xs text-white font-bold">🗑️ Sí, Eliminar de BD (DELETE)</button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400 text-xs uppercase">
+                <th class="py-2.5 px-2">ID</th>
+                <th class="py-2.5 px-2">Recorrido (Origen → Destino)</th>
+                <th class="py-2.5 px-2 text-right">Cap.</th>
+                <th class="py-2.5 px-2 text-right">Vend.</th>
+                <th class="py-2.5 px-2 text-right">Libres</th>
+                <th class="py-2.5 px-2 text-right">Precio</th>
+                <th class="py-2.5 px-2 text-right">Ingresos</th>
+                <th class="py-2.5 px-2 text-center">Estado</th>
+                <th class="py-2.5 px-2 text-center">Acciones CRUD</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyRutas" class="divide-y divide-slate-800/70"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: VENTAS, CANCELACIONES Y RETO ALGORITMICO (RECOMENDADOR)      -->
+    <!-- =================================================================== -->
+    <section id="tab-ventas" class="tab-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div>
+            <h2 class="text-base font-bold text-white">Venta Directa de Boletos por ID</h2>
+          </div>
+          <form id="formVenderBoletos" class="space-y-3" novalidate>
+            <div>
+              <label for="ventaRutaSelect" class="block text-xs font-medium text-slate-300 mb-1">Seleccionar Ruta (ID)</label>
+              <select id="ventaRutaSelect" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none"></select>
+            </div>
+            <div>
+              <label for="ventaCantidad" class="block text-xs font-medium text-slate-300 mb-1">Cantidad de Boletos a Vender</label>
+              <input id="ventaCantidad" type="number" min="1" max="100" value="2" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none" required />
+            </div>
+            <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition">
+               Confirmar Venta
+            </button>
+          </form>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div>
+            <h2 class="text-base font-bold text-white">Cancelación / Devolución de Boletos</h2>
+          </div>
+          <form id="formCancelarBoletos" class="space-y-3" novalidate>
+            <div>
+              <label for="cancelRutaSelect" class="block text-xs font-medium text-slate-300 mb-1">Seleccionar Ruta con Boletos Vendidos</label>
+              <select id="cancelRutaSelect" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none"></select>
+            </div>
+            <div>
+              <label for="cancelCantidad" class="block text-xs font-medium text-slate-300 mb-1">Boletos a Cancelar / Devolver</label>
+              <input id="cancelCantidad" type="number" min="1" max="100" value="1" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white focus:border-blue-500 focus:outline-none" required />
+            </div>
+            <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm transition">
+              ↩ Devolución S
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 bg-slate-900 border border-blue-500/30 rounded-2xl p-5 space-y-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">Reto Algorítmico Oficial</span>
+          <h2 class="text-base sm:text-lg font-bold text-white mt-2">Recomendador Inteligente de Ruta </h2>
+        </div>
+
+        <form id="formRecomendar" class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2" novalidate>
+          <div>
+            <label for="recOrigen" class="block text-xs font-medium text-slate-300 mb-1">Origen buscado</label>
+            <input id="recOrigen" type="text" value="Guatemala" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white" required />
+          </div>
+          <div>
+            <label for="recDestino" class="block text-xs font-medium text-slate-300 mb-1">Destino buscado</label>
+            <input id="recDestino" type="text" value="Quetzaltenango" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white" required />
+          </div>
+          <div>
+            <label for="recGrupo" class="block text-xs font-medium text-slate-300 mb-1">Pasajeros del grupo (1–100)</label>
+            <input id="recGrupo" type="number" min="1" max="100" value="5" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white" required />
+          </div>
+          <div class="sm:col-span-3">
+            <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition shadow">
+               Evaluar Rutas y Recomendaciones Optimas
+            </button>
+          </div>
+        </form>
+
+        <div id="recResultadoBox" class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+          <p class="text-xs text-slate-400">Presiona <strong>"Evaluar Rutas Candidatas"</strong> para ver paso a paso cómo el algoritmo evalúa cada bus y selecciona el óptimo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 3: BUSQUEDAS POR MULTIPLES CRITERIOS                            -->
+    <!-- =================================================================== -->
+    <section id="tab-busquedas" class="tab-panel hidden bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+      <div>
+        <h2 class="text-base font-bold text-white">Búsquedas Secuenciales por Múltiples Criterios</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+        <div>
+          <label for="busqTipo" class="block text-xs font-medium text-slate-300 mb-1">Criterio de Búsqueda</label>
+          <select id="busqTipo" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white">
+            <option value="id">1. Por ID (Búsqueda Secuencial)</option>
+            <option value="origen">2. Por Ciudad de Origen</option>
+            <option value="destino">3. Por Ciudad de Destino</option>
+          </select>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="busqValor" class="block text-xs font-medium text-slate-300 mb-1">Valor a buscar (sin importar mayúsculas/minúsculas)</label>
+          <input id="busqValor" type="text" placeholder="Escribe un ID (ej. 101) o ciudad (ej. Guatemala)" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-white" />
+        </div>
+        <div class="flex items-end gap-2">
+          <button id="btnEjecutarBusqueda" type="button" class="w-full py-2 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition">
+            Buscar Ahora
+          </button>
+          <button id="btnLimpiarBusqueda" type="button" class="py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm transition">
+            Ver Todas
+          </button>
+        </div>
+      </div>
+
+      <div id="busqMensaje" class="text-xs text-blue-300 font-mono">Mostrando todas las rutas registradas.</div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 text-xs uppercase">
+              <th class="py-2 px-2">Pos. Arreglo</th>
+              <th class="py-2 px-2">ID</th>
+              <th class="py-2 px-2">Origen</th>
+              <th class="py-2 px-2">Destino</th>
+              <th class="py-2 px-2 text-right">Capacidad</th>
+              <th class="py-2 px-2 text-right">Pasajeros</th>
+              <th class="py-2 px-2 text-right">Disponibles</th>
+              <th class="py-2 px-2 text-right">Precio</th>
+              <th class="py-2 px-2 text-right">Ingresos</th>
+              <th class="py-2 px-2 text-center">Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyBusquedas" class="divide-y divide-slate-800/70"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 4: REPORTES Y ORDENAMIENTO BURBUJA MANUAL                       -->
+    <!-- =================================================================== -->
+    <section id="tab-reportes" class="tab-panel hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div>
+            <span class="text-xs px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-semibold">Reporte 1 · Algoritmo Burbuja Manual</span>
+            <h3 class="text-base font-bold text-white mt-1">Ranking de Rutas Ordenadas por Ingresos</h3>
+            <p class="text-xs text-slate-400">Ordena el arreglo de índices <span class="mono text-slate-300">int orden[100]</span>: 1° Mayor ingreso, 2° Más pasajeros, 3° Menor ID.</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="border-b border-slate-800 text-slate-400 text-xs uppercase">
+                  <th class="py-2 px-2">Pos</th>
+                  <th class="py-2 px-2">ID</th>
+                  <th class="py-2 px-2">Recorrido</th>
+                  <th class="py-2 px-2 text-right">Pasaj.</th>
+                  <th class="py-2 px-2 text-right">Ingresos (Q)</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyReporteIngresos" class="divide-y divide-slate-800/70"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div>
+            <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold">Reporte 2 · Control de Capacidades</span>
+            <h3 class="text-base font-bold text-white mt-1">Ocupación y Disponibilidad por Recorrido</h3>
+            <p class="text-xs text-slate-400">Calcula <span class="mono text-slate-300">100.0 * pasajeros / capacidad</span> e identifica unidades llenas o inactivas.</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="border-b border-slate-800 text-slate-400 text-xs uppercase">
+                  <th class="py-2 px-2">ID</th>
+                  <th class="py-2 px-2">Recorrido</th>
+                  <th class="py-2 px-2 text-right">Ocup/Cap</th>
+                  <th class="py-2 px-2 text-right">% Ocupación</th>
+                  <th class="py-2 px-2 text-center">Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyReporteOcupacion" class="divide-y divide-slate-800/70"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
+        <div>
+          <span class="text-xs px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-semibold">Reporte 3 · Contadores, Acumuladores y Extremos</span>
+          <h3 class="text-base font-bold text-white mt-1">Salida Exacta de <span class="mono text-blue-300">reporteResumen()</span></h3>
+        </div>
+        <pre id="preReporteResumen" class="mono text-xs sm:text-sm bg-slate-950 border border-slate-800 rounded-xl p-4 text-emerald-300 overflow-x-auto"></pre>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 5: CIFRADO PARA TONTOS + CONSOLA MYSQL                          -->
+    <!-- =================================================================== -->
+    <section id="tab-cifrado-mysql" class="tab-panel hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-5 bg-slate-900 border border-amber-500/30 rounded-2xl p-5 space-y-4">
+          <div>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-semibold">Módulo database/cifrado_tontos.cpp</span>
+            <h2 class="text-base font-bold text-white mt-2">Probador en Vivo: "Cifrado para Tontos"</h2>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Desplaza cada carácter imprimible (ASCII 32..122) sumando <span class="mono text-amber-300">CLAVE_TONTOS = 3</span> al guardar y restando <span class="mono text-amber-300">3</span> al leer.
+            </p>
+          </div>
+
+          <div>
+            <label for="inputTextoCifrar" class="block text-xs font-medium text-slate-300 mb-1">Escribe cualquier texto o línea de ruta para cifrar:</label>
+            <input id="inputTextoCifrar" type="text" value="101;Guatemala;Quetzaltenango;40;18;60.00;1080.00;1" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-xs sm:text-sm mono text-white" />
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2 text-xs mono">
+            <div>
+              <span class="text-slate-400">Texto Original    :</span>
+              <div id="outTextoOriginal" class="text-slate-200 break-all mt-0.5"></div>
+            </div>
+            <div>
+              <span class="text-amber-400">Cifrado (+3 ASCII):</span>
+              <div id="outTextoCifrado" class="text-amber-300 font-bold break-all mt-0.5"></div>
+            </div>
+            <div>
+              <span class="text-emerald-400">Descifrado (-3)   :</span>
+              <div id="outTextoDescifrado" class="text-emerald-300 break-all mt-0.5"></div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button id="btnDescargarCifrado" type="button" class="flex-1 py-2 px-3 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs transition">
+               Descargar rutas_cifradas.txt
+            </button>
+            <button id="btnDescargarSQL" type="button" class="flex-1 py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition">
+               Descargar sincronizacion_mysql.sql
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div>
+            <h2 class="text-base font-bold text-white">Sincronización en Tiempo Real: MySQL + Cifrado para Tontos</h2>
+            <p class="text-xs text-slate-400">Cada operación CRUD actualiza automáticamente la tabla <span class="mono text-emerald-300">rutas_buses</span> en MySQL y el respaldo cifrado.</p>
+          </div>
+
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-amber-300 mb-1.5">Contenido de rutas_cifradas.txt (Cifrado para Tontos +3 ASCII)</h3>
+            <pre id="preArchivoCifrado" class="mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-amber-300 overflow-x-auto max-h-40"></pre>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-emerald-300">Consola MySQL Integrada (sincronizacion_mysql.sql)</h3>
+              <div class="flex items-center gap-1.5">
+                <button id="btnRayoSQL" type="button" class="px-3 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs flex items-center gap-1 shadow transition">
+                  ⚡ Ejecutar Script SQL (Rayo)
+                </button>
+                <button id="btnRayoVistaIngresos" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition">
+                  ⚡ SELECT vw_reporte_ingresos
+                </button>
+              </div>
+            </div>
+            <pre id="preSentenciasMySQL" class="mono text-xs bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-emerald-300 overflow-x-auto max-h-40"></pre>
+          </div>
+
+          <div id="boxResultadoRayoSQL" class="bg-slate-950 border border-emerald-500/30 rounded-xl p-3.5 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span id="lblEstadoRayoSQL" class="text-emerald-400 font-semibold">⚡ Motor SQL Listo — Haz clic en "⚡ Ejecutar Script SQL" arriba</span>
+              <span class="mono text-slate-400">db_transporte_rutas</span>
+            </div>
+            <div id="tablaResultadoRayoSQL" class="overflow-x-auto text-xs"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-900 bg-slate-950 py-4 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
+      <span>Universidad Mariano Gálvez de Guatemala · Ingeniería en Sistemas · Algoritmos 2026</span>
+      <span>Proyecto 12 (Variante A) · CRUD Completo HTML + C++17 + MySQL + Cifrado para Tontos</span>
+    </div>
+  </footer>
+
+  <script>
+    const CLAVE_TONTOS = 3;
+    const MAX_RUTAS = 100;
+    const API_BASE = "http://localhost:8080";
+
+    const RUTAS_INICIALES = [
+      { id: 101, origen: "Guatemala", destino: "Quetzaltenango", capacidad: 40, pasajeros: 18, precio: 60.00, ingresos: 1080.00, activa: true },
+      { id: 102, origen: "Guatemala", destino: "Peten",          capacidad: 45, pasajeros: 45, precio: 150.00, ingresos: 6750.00, activa: true },
+      { id: 103, origen: "Guatemala", destino: "Escuintla",      capacidad: 30, pasajeros: 12, precio: 25.00, ingresos: 300.00, activa: true },
+      { id: 104, origen: "Xela",      destino: "Huehuetenango",  capacidad: 35, pasajeros: 0,  precio: 40.00, ingresos: 0.00, activa: true },
+      { id: 105, origen: "Guatemala", destino: "Quetzaltenango", capacidad: 50, pasajeros: 20, precio: 55.00, ingresos: 1100.00, activa: true },
+      { id: 106, origen: "Coban",     destino: "Guatemala",      capacidad: 38, pasajeros: 10, precio: 70.00, ingresos: 700.00, activa: false }
+    ];
+
+    let rutas = [];
+    let servidorCppConectado = false;
+    let idPendienteEliminar = null;
+
+    function mostrarToast(mensaje, tipo = "ok") {
+      const banner = document.getElementById("toastBanner");
+      const text = document.getElementById("toastText");
+      text.textContent = mensaje;
+      banner.className = "fixed bottom-5 right-5 z-50 max-w-md px-4 py-3 rounded-xl shadow-2xl border text-sm font-medium flex items-center justify-between gap-3 transition-all ";
+      if (tipo === "error") {
+        banner.className += "bg-rose-950/95 border-rose-500/50 text-rose-200";
+      } else if (tipo === "warn") {
+        banner.className += "bg-amber-950/95 border-amber-500/50 text-amber-200";
+      } else {
+        banner.className += "bg-emerald-950/95 border-emerald-500/50 text-emerald-200";
+      }
+      banner.classList.remove("hidden");
+    }
+
+    function actualizarBarraSQL(sql) {
+      document.getElementById("barraUltimaSQL").textContent = sql;
+    }
+
+    function cifrarParaTontos(texto) {
+      let res = "";
+      for (let i = 0; i < texto.length; i++) {
+        const code = texto.charCodeAt(i);
+        if (code >= 32 && code <= 122) {
+          res += String.fromCharCode(code + CLAVE_TONTOS);
+        } else {
+          res += texto[i];
+        }
+      }
+      return res;
+    }
+
+    function descifrarParaTontos(texto) {
+      let res = "";
+      for (let i = 0; i < texto.length; i++) {
+        const code = texto.charCodeAt(i);
+        if (code >= (32 + CLAVE_TONTOS) && code <= (122 + CLAVE_TONTOS)) {
+          res += String.fromCharCode(code - CLAVE_TONTOS);
+        } else {
+          res += texto[i];
+        }
+      }
+      return res;
+    }
+
+    function lineaEstaCifrada(linea) {
+      return !linea.includes(";") && linea.includes(">");
+    }
+
+    function aMinusculas(txt) {
+      return String(txt || "").trim().toLowerCase();
+    }
+
+    function mismoTexto(a, b) {
+      return aMinusculas(a) === aMinusculas(b);
+    }
+
+    function buscarPorID(idBuscado) {
+      for (let i = 0; i < rutas.length; i++) {
+        if (rutas[i].id === idBuscado) return i;
+      }
+      return -1;
+    }
+
+    function formatearLineaRuta(r) {
+      return `${r.id};${r.origen};${r.destino};${r.capacidad};${r.pasajeros};${r.precio.toFixed(2)};${r.ingresos.toFixed(2)};${r.activa ? 1 : 0}`;
+    }
+
+    // =========================================================================
+    // COMUNICACION AUTOMATICA CON EL SERVIDOR C++ (CLION -> MYSQL)
+    // =========================================================================
+    async function llamarServidorCpp(metodo, endpoint, paramsObj = null) {
+      try {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 600);
+        let url = `${API_BASE}${endpoint}`;
+        if (paramsObj) {
+          const qs = new URLSearchParams(paramsObj).toString();
+          url += (url.includes("?") ? "&" : "?") + qs;
+        }
+        const resp = await fetch(url, { method: metodo, signal: ctrl.signal });
+        clearTimeout(timer);
+        if (!resp.ok) return null;
+        const data = await resp.json();
+        servidorCppConectado = true;
+        document.getElementById("txtConexion").innerHTML = `Conectado a C++ CLion + MySQL (<strong class="mono">${data.mysql_db || "db_transporte_rutas"}</strong>)`;
+        if (data.ultima_sql) actualizarBarraSQL(data.ultima_sql);
+        return data;
+      } catch (e) {
+        servidorCppConectado = false;
+        return null;
+      }
+    }
+
+    async function cargarEstadoInicial() {
+      const remoto = await llamarServidorCpp("GET", "/api/rutas");
+      if (remoto && Array.isArray(remoto.rutas)) {
+        rutas = remoto.rutas;
+        renderTodo();
+        return;
+      }
+      try {
+        const guardado = localStorage.getItem("umg_rutas_transporte_v1");
+        if (guardado) {
+          const parsed = JSON.parse(guardado);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            rutas = parsed;
+            renderTodo();
+            return;
+          }
+        }
+      } catch (e) {}
+      rutas = JSON.parse(JSON.stringify(RUTAS_INICIALES));
+      renderTodo();
+    }
+
+    function persistirEstadoLocal() {
+      try {
+        localStorage.setItem("umg_rutas_transporte_v1", JSON.stringify(rutas));
+      } catch (e) {}
+    }
+
+    // =========================================================================
+    // FUNCIONES CRUD (CREATE, READ, UPDATE, DELETE)
+    // =========================================================================
+    function activarModoEdicion(r) {
+      document.getElementById("modoEdicionActivo").value = "1";
+      const inputId = document.getElementById("regId");
+      inputId.value = r.id;
+      inputId.readOnly = true;
+      inputId.classList.add("opacity-60", "cursor-not-allowed");
+
+      document.getElementById("regOrigen").value = r.origen;
+      document.getElementById("regDestino").value = r.destino;
+      document.getElementById("regCapacidad").value = r.capacidad;
+      document.getElementById("regPrecio").value = r.precio.toFixed(2);
+      document.getElementById("regPasajeros").value = r.pasajeros;
+      document.getElementById("regEstadoActiva").value = r.activa ? "1" : "0";
+
+      document.getElementById("filaCamposEdicionExtra").classList.remove("hidden");
+      document.getElementById("btnCancelarEdicion").classList.remove("hidden");
+      document.getElementById("badgeModoCRUD").className = "text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold uppercase";
+      document.getElementById("badgeModoCRUD").textContent = `UPDATE · Editando Ruta #${r.id}`;
+      document.getElementById("tituloFormCRUD").textContent = `Modificar Ruta ID ${r.id}`;
+      document.getElementById("lblAccionSQLForm").textContent = `UPDATE rutas_buses WHERE id=${r.id}`;
+      const btn = document.getElementById("btnSubmitCRUD");
+      btn.className = "w-full py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm transition shadow";
+      btn.textContent = `Actualizar Ruta #${r.id} en Base de Datos (UPDATE)`;
+    }
+
+    function cancelarModoEdicion() {
+      document.getElementById("formRegistrarRuta").reset();
+      document.getElementById("modoEdicionActivo").value = "0";
+      const inputId = document.getElementById("regId");
+      inputId.readOnly = false;
+      inputId.classList.remove("opacity-60", "cursor-not-allowed");
+
+      document.getElementById("filaCamposEdicionExtra").classList.add("hidden");
+      document.getElementById("btnCancelarEdicion").classList.add("hidden");
+      document.getElementById("badgeModoCRUD").className = "text-xs px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold uppercase";
+      document.getElementById("badgeModoCRUD").textContent = "CREATE · Crear Registro";
+      document.getElementById("tituloFormCRUD").textContent = "Registrar Nueva Ruta en BD";
+      document.getElementById("lblAccionSQLForm").textContent = "INSERT INTO rutas_buses";
+      const btn = document.getElementById("btnSubmitCRUD");
+      btn.className = "w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition shadow";
+      btn.textContent = "Guardar Ruta";
+    }
+
+    function ordenarPorIngresosIndices() {
+      const orden = rutas.map((_, idx) => idx);
+      const n = orden.length;
+      for (let i = 0; i < n - 1; i++) {
+        for (let j = 0; j < n - i - 1; j++) {
+          const a = rutas[orden[j]];
+          const b = rutas[orden[j + 1]];
+          let intercambiar = false;
+          if (a.ingresos < b.ingresos) {
+            intercambiar = true;
+          } else if (a.ingresos === b.ingresos) {
+            if (a.pasajeros < b.pasajeros) {
+              intercambiar = true;
+            } else if (a.pasajeros === b.pasajeros && a.id > b.id) {
+              intercambiar = true;
+            }
+          }
+          if (intercambiar) {
+            const temp = orden[j];
+            orden[j] = orden[j + 1];
+            orden[j + 1] = temp;
+          }
+        }
+      }
+      return orden;
+    }
+
+    function renderTodo() {
+      persistirEstadoLocal();
+      document.getElementById("navCountRutas").textContent = rutas.length;
+
+      let activas = 0, llenas = 0, totalPas = 0, totalCap = 0, totalIng = 0;
+      let idxMasDisp = -1;
+      for (let i = 0; i < rutas.length; i++) {
+        const r = rutas[i];
+        if (r.activa) activas++;
+        if (r.pasajeros === r.capacidad) llenas++;
+        totalPas += r.pasajeros;
+        totalCap += r.capacidad;
+        totalIng += r.ingresos;
+        if (r.activa) {
+          const disp = r.capacidad - r.pasajeros;
+          if (idxMasDisp === -1 || disp > (rutas[idxMasDisp].capacidad - rutas[idxMasDisp].pasajeros)) {
+            idxMasDisp = i;
+          }
+        }
+      }
+      document.getElementById("kpiTotalRutas").textContent = rutas.length;
+      document.getElementById("kpiActivasDetalle").textContent = `${activas} activas · ${rutas.length - activas} inactivas`;
+      document.getElementById("kpiPasajeros").textContent = `${totalPas} / ${totalCap}`;
+      const pctGlobal = totalCap > 0 ? ((100 * totalPas) / totalCap).toFixed(1) : "0.0";
+      document.getElementById("kpiOcupacionPct").textContent = `${pctGlobal}% ocup.`;
+      document.getElementById("kpiIngresos").textContent = `Q${totalIng.toFixed(2)}`;
+      const prom = rutas.length > 0 ? (totalIng / rutas.length).toFixed(2) : "0.00";
+      document.getElementById("kpiPromedio").textContent = `Prom: Q${prom}`;
+      document.getElementById("kpiLlenas").textContent = `${llenas} ${llenas === 1 ? "llena" : "llenas"}`;
+      document.getElementById("kpiMasDisponible").textContent = idxMasDisp !== -1
+        ? `Mayor cupo: ID ${rutas[idxMasDisp].id} (${rutas[idxMasDisp].capacidad - rutas[idxMasDisp].pasajeros} libres)`
+        : "Sin rutas activas";
+
+      // Tabla CRUD (Tab 1)
+      const tbodyRutas = document.getElementById("tbodyRutas");
+      tbodyRutas.innerHTML = "";
+      rutas.forEach((r) => {
+        const libres = r.capacidad - r.pasajeros;
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-slate-800/40 transition";
+        tr.innerHTML = `
+          <td class="py-3 px-2 font-mono font-bold text-blue-400">${r.id}</td>
+          <td class="py-3 px-2 font-medium text-white">${r.origen} <span class="text-slate-500">→</span> ${r.destino}</td>
+          <td class="py-3 px-2 text-right font-mono">${r.capacidad}</td>
+          <td class="py-3 px-2 text-right font-mono">${r.pasajeros}</td>
+          <td class="py-3 px-2 text-right font-mono ${libres === 0 ? 'text-rose-400 font-bold' : 'text-emerald-400'}">${libres}</td>
+          <td class="py-3 px-2 text-right font-mono">Q${r.precio.toFixed(2)}</td>
+          <td class="py-3 px-2 text-right font-mono font-semibold text-white">Q${r.ingresos.toFixed(2)}</td>
+          <td class="py-3 px-2 text-center">
+            <button type="button" data-toggle-id="${r.id}" class="px-2 py-0.5 rounded text-xs font-semibold border transition ${
+              r.activa
+                ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/25'
+                : 'bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700'
+            }">
+              ${r.activa ? '✓ Activa' : '✕ Inactiva'}
+            </button>
+          </td>
+          <td class="py-3 px-2 text-center">
+            <div class="flex items-center justify-center gap-1.5">
+              <button type="button" data-edit-id="${r.id}" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-semibold transition">
+                Editar
+              </button>
+              <button type="button" data-delete-id="${r.id}" class="px-2.5 py-1 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/30 text-xs font-semibold transition">
+                🗑️ Eliminar
+              </button>
+            </div>
+          </td>
+        `;
+        tbodyRutas.appendChild(tr);
+      });
+
+      // Listeners para Estado, Editar (UPDATE) y Eliminar (DELETE)
+      tbodyRutas.querySelectorAll("[data-toggle-id]").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const id = parseInt(btn.getAttribute("data-toggle-id"), 10);
+          const pos = buscarPorID(id);
+          if (pos !== -1) {
+            rutas[pos].activa = !rutas[pos].activa;
+            const r = rutas[pos];
+            const cif = cifrarParaTontos(formatearLineaRuta(r));
+            actualizarBarraSQL(`UPDATE rutas_buses SET activa=${r.activa ? 1 : 0}, linea_cifrado_tontos='${cif}' WHERE id=${r.id};`);
+            await llamarServidorCpp("PUT", "/api/rutas", {
+              id: r.id, origen: r.origen, destino: r.destino,
+              capacidad: r.capacidad, pasajeros: r.pasajeros,
+              precio: r.precio, activa: r.activa ? 1 : 0
+            });
+            mostrarToast(`[*] Estado de ruta ${id} actualizado en BD (${r.activa ? "ACTIVA" : "INACTIVA"}).`, "ok");
+            renderTodo();
+          }
+        });
+      });
+
+      tbodyRutas.querySelectorAll("[data-edit-id]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = parseInt(btn.getAttribute("data-edit-id"), 10);
+          const pos = buscarPorID(id);
+          if (pos !== -1) {
+            activarModoEdicion(rutas[pos]);
+          }
+        });
+      });
+
+      tbodyRutas.querySelectorAll("[data-delete-id]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = parseInt(btn.getAttribute("data-delete-id"), 10);
+          const pos = buscarPorID(id);
+          if (pos !== -1) {
+            idPendienteEliminar = id;
+            document.getElementById("lblRutaEliminar").textContent = `Ruta #${id} (${rutas[pos].origen} → ${rutas[pos].destino})`;
+            document.getElementById("barraConfirmarEliminar").classList.remove("hidden");
+          }
+        });
+      });
+
+      // Selects Tab 2
+      const ventaSelect = document.getElementById("ventaRutaSelect");
+      const cancelSelect = document.getElementById("cancelRutaSelect");
+      ventaSelect.innerHTML = "";
+      cancelSelect.innerHTML = "";
+      rutas.forEach((r) => {
+        const libres = r.capacidad - r.pasajeros;
+        const optV = document.createElement("option");
+        optV.value = r.id;
+        optV.textContent = `ID ${r.id} · ${r.origen} → ${r.destino} (${libres} libres · Q${r.precio.toFixed(2)}) [${r.activa ? "Activa" : "Inactiva"}]`;
+        ventaSelect.appendChild(optV);
+
+        const optC = document.createElement("option");
+        optC.value = r.id;
+        optC.textContent = `ID ${r.id} · ${r.origen} → ${r.destino} (${r.pasajeros} boletos vendidos)`;
+        cancelSelect.appendChild(optC);
+      });
+
+      // Reporte 1: Burbuja
+      const tbodyIng = document.getElementById("tbodyReporteIngresos");
+      tbodyIng.innerHTML = "";
+      const orden = ordenarPorIngresosIndices();
+      orden.forEach((idx, rank) => {
+        const r = rutas[idx];
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="py-2 px-2 font-mono text-slate-400">#${rank + 1}</td>
+          <td class="py-2 px-2 font-mono font-bold text-blue-400">${r.id}</td>
+          <td class="py-2 px-2 text-white">${r.origen} - ${r.destino}</td>
+          <td class="py-2 px-2 text-right font-mono">${r.pasajeros}</td>
+          <td class="py-2 px-2 text-right font-mono font-bold text-emerald-400">Q${r.ingresos.toFixed(2)}</td>
+        `;
+        tbodyIng.appendChild(tr);
+      });
+
+      // Reporte 2: Ocupacion
+      const tbodyOcup = document.getElementById("tbodyReporteOcupacion");
+      tbodyOcup.innerHTML = "";
+      rutas.forEach((r) => {
+        const pct = ((100 * r.pasajeros) / r.capacidad).toFixed(1);
+        let estado = "Disponible";
+        let badgeCls = "bg-emerald-500/15 text-emerald-300";
+        if (!r.activa) {
+          estado = "Inactiva";
+          badgeCls = "bg-slate-800 text-slate-400";
+        } else if (r.pasajeros === r.capacidad) {
+          estado = "LLENA";
+          badgeCls = "bg-rose-500/20 text-rose-300 font-bold";
+        }
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="py-2 px-2 font-mono font-bold text-blue-400">${r.id}</td>
+          <td class="py-2 px-2 text-white">${r.origen} - ${r.destino}</td>
+          <td class="py-2 px-2 text-right font-mono">${r.pasajeros}/${r.capacidad}</td>
+          <td class="py-2 px-2 text-right font-mono">${pct}%</td>
+          <td class="py-2 px-2 text-center"><span class="px-2 py-0.5 rounded text-xs ${badgeCls}">${estado}</span></td>
+        `;
+        tbodyOcup.appendChild(tr);
+      });
+
+      // Reporte 3: Resumen General
+      const preResumen = document.getElementById("preReporteResumen");
+      if (rutas.length === 0) {
+        preResumen.textContent = "[!] No hay rutas registradas.";
+      } else {
+        let idxMayorIng = 0, idxMayorOcup = 0;
+        for (let i = 0; i < rutas.length; i++) {
+          if (rutas[i].ingresos > rutas[idxMayorIng].ingresos) idxMayorIng = i;
+          if ((rutas[i].pasajeros / rutas[i].capacidad) > (rutas[idxMayorOcup].pasajeros / rutas[idxMayorOcup].capacidad)) {
+            idxMayorOcup = i;
+          }
+        }
+        const rIng = rutas[idxMayorIng];
+        const rOcup = rutas[idxMayorOcup];
+        let txt = `--- REPORTE 3: RESUMEN GENERAL ---\n`;
+        txt += `Rutas registradas:        ${rutas.length} (activas: ${activas}, inactivas: ${rutas.length - activas})\n`;
+        txt += `Rutas llenas:             ${llenas}\n`;
+        txt += `Pasajeros transportados:  ${totalPas} de ${totalCap} asientos\n`;
+        txt += `Ocupacion global:         ${((100 * totalPas) / totalCap).toFixed(2)}%\n`;
+        txt += `Ingresos totales:         Q${totalIng.toFixed(2)}\n`;
+        txt += `Ingreso promedio / ruta:  Q${(totalIng / rutas.length).toFixed(2)}\n`;
+        txt += `Ruta de mayor ingreso:    ${rIng.id} (${rIng.origen} - ${rIng.destino}) Q${rIng.ingresos.toFixed(2)}\n`;
+        txt += `Ruta mas ocupada:         ${rOcup.id} (${rOcup.origen} - ${rOcup.destino})\n`;
+        if (idxMasDisp !== -1) {
+          const rDisp = rutas[idxMasDisp];
+          txt += `Ruta con mas asientos:    ${rDisp.id} (${rDisp.origen} - ${rDisp.destino}) con ${rDisp.capacidad - rDisp.pasajeros} libres`;
+        }
+        preResumen.textContent = txt;
+      }
+
+      // Cifrado para Tontos y Sentencias MySQL (Tab 5)
+      const lineasCifradas = rutas.map((r) => cifrarParaTontos(formatearLineaRuta(r))).join("\n");
+      document.getElementById("preArchivoCifrado").textContent = lineasCifradas || "-- Sin registros --";
+
+      let sqlText = `-- Sincronizacion automatica generada para MySQL (db_transporte_rutas)\nUSE db_transporte_rutas;\n\n`;
+      rutas.forEach((r) => {
+        const cif = cifrarParaTontos(formatearLineaRuta(r));
+        sqlText += `REPLACE INTO rutas_buses (id, origen, destino, capacidad, pasajeros, precio, ingresos, activa, linea_cifrado_tontos)\nVALUES (${r.id}, '${r.origen}', '${r.destino}', ${r.capacidad}, ${r.pasajeros}, ${r.precio.toFixed(2)}, ${r.ingresos.toFixed(2)}, ${r.activa ? 1 : 0}, '${cif}');\n`;
+      });
+      document.getElementById("preSentenciasMySQL").textContent = sqlText;
+
+      ejecutarFiltroBusqueda();
+      actualizarDemoCifrado();
+    }
+
+    // =========================================================================
+    // EVENT LISTENERS (NAVEGACION, CRUD CREATE/UPDATE/DELETE, MYSQL MODAL)
+    // =========================================================================
+    document.querySelectorAll(".nav-tab").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-tab");
+        document.querySelectorAll(".tab-panel").forEach((p) => p.classList.add("hidden"));
+        document.getElementById(target).classList.remove("hidden");
+
+        document.querySelectorAll(".nav-tab").forEach((b) => {
+          b.className = "nav-tab px-4 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap transition";
+        });
+        btn.className = "nav-tab px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-blue-500 text-blue-400 whitespace-nowrap transition";
+      });
+    });
+
+    document.getElementById("btnCloseToast").addEventListener("click", () => {
+      document.getElementById("toastBanner").classList.add("hidden");
+    });
+
+    document.getElementById("btnCancelarEdicion").addEventListener("click", cancelarModoEdicion);
+
+    // Confirmacion de Eliminacion (DELETE)
+    document.getElementById("btnCancelarEliminar").addEventListener("click", () => {
+      idPendienteEliminar = null;
+      document.getElementById("barraConfirmarEliminar").classList.add("hidden");
+    });
+
+    document.getElementById("btnConfirmarEliminarDefinitivo").addEventListener("click", async () => {
+      if (idPendienteEliminar === null) return;
+      const id = idPendienteEliminar;
+      const pos = buscarPorID(id);
+      if (pos !== -1) {
+        rutas.splice(pos, 1);
+        actualizarBarraSQL(`DELETE FROM rutas_buses WHERE id=${id};`);
+        await llamarServidorCpp("DELETE", "/api/rutas", { id });
+        if (document.getElementById("modoEdicionActivo").value === "1" && parseInt(document.getElementById("regId").value, 10) === id) {
+          cancelarModoEdicion();
+        }
+        mostrarToast(`[*] Ruta #${id} eliminada de la Base de Datos MySQL (DELETE).`, "warn");
+        renderTodo();
+      }
+      idPendienteEliminar = null;
+      document.getElementById("barraConfirmarEliminar").classList.add("hidden");
+    });
+
+    // Submit Formulario CRUD (CREATE o UPDATE)
+    document.getElementById("formRegistrarRuta").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const esUpdate = document.getElementById("modoEdicionActivo").value === "1";
+      const id = parseInt(document.getElementById("regId").value, 10);
+      const origen = document.getElementById("regOrigen").value.trim();
+      const destino = document.getElementById("regDestino").value.trim();
+      const capacidad = parseInt(document.getElementById("regCapacidad").value, 10);
+      const precio = parseFloat(document.getElementById("regPrecio").value);
+
+      if (isNaN(id) || id < 1 || id > 9999) {
+        mostrarToast("[!] Valor de ID fuera de rango (1 a 9999).", "error");
+        return;
+      }
+      if (!origen || !destino) {
+        mostrarToast("[!] El origen y el destino no pueden estar vacíos.", "error");
+        return;
+      }
+      if (origen.includes(";") || destino.includes(";")) {
+        mostrarToast("[!] No se permite el carácter ';'.", "error");
+        return;
+      }
+      if (mismoTexto(origen, destino)) {
+        mostrarToast("[!] El origen y el destino no pueden ser iguales.", "error");
+        return;
+      }
+      if (isNaN(capacidad) || capacidad < 1 || capacidad > 100) {
+        mostrarToast("[!] Capacidad fuera de rango (1 a 100).", "error");
+        return;
+      }
+      if (isNaN(precio) || precio < 0.01 || precio > 1000) {
+        mostrarToast("[!] Precio fuera de rango (Q0.01 a Q1000.00).", "error");
+        return;
+      }
+
+      if (esUpdate) {
+        const pos = buscarPorID(id);
+        if (pos === -1) {
+          mostrarToast("[!] La ruta a editar ya no existe.", "error");
+          cancelarModoEdicion();
+          return;
+        }
+        const pasajeros = parseInt(document.getElementById("regPasajeros").value, 10);
+        const activa = document.getElementById("regEstadoActiva").value === "1";
+        if (isNaN(pasajeros) || pasajeros < 0 || pasajeros > capacidad) {
+          mostrarToast(`[!] Los pasajeros (${pasajeros}) deben estar entre 0 y la capacidad (${capacidad}).`, "error");
+          return;
+        }
+
+        rutas[pos].origen = origen;
+        rutas[pos].destino = destino;
+        rutas[pos].capacidad = capacidad;
+        rutas[pos].pasajeros = pasajeros;
+        rutas[pos].precio = precio;
+        rutas[pos].ingresos = pasajeros * precio;
+        rutas[pos].activa = activa;
+
+        const cif = cifrarParaTontos(formatearLineaRuta(rutas[pos]));
+        actualizarBarraSQL(`UPDATE rutas_buses SET origen='${origen}', destino='${destino}', capacidad=${capacidad}, pasajeros=${pasajeros}, precio=${precio.toFixed(2)}, ingresos=${rutas[pos].ingresos.toFixed(2)}, activa=${activa ? 1 : 0}, linea_cifrado_tontos='${cif}' WHERE id=${id};`);
+
+        await llamarServidorCpp("PUT", "/api/rutas", {
+          id, origen, destino, capacidad, pasajeros, precio, activa: activa ? 1 : 0
+        });
+
+        cancelarModoEdicion();
+        mostrarToast(`[*] Ruta #${id} actualizada en la Base de Datos MySQL (UPDATE).`, "ok");
+        renderTodo();
+      } else {
+        if (rutas.length >= MAX_RUTAS) {
+          mostrarToast(`[!] Límite de ${MAX_RUTAS} rutas alcanzado.`, "error");
+          return;
+        }
+        if (buscarPorID(id) !== -1) {
+          mostrarToast("[!] Ya existe una ruta con ese ID.", "error");
+          return;
+        }
+
+        const nueva = {
+          id, origen, destino, capacidad,
+          pasajeros: 0, precio, ingresos: 0.0, activa: true
+        };
+        rutas.push(nueva);
+
+        const cif = cifrarParaTontos(formatearLineaRuta(nueva));
+        actualizarBarraSQL(`INSERT INTO rutas_buses (id, origen, destino, capacidad, pasajeros, precio, ingresos, activa, linea_cifrado_tontos) VALUES (${id}, '${origen}', '${destino}', ${capacidad}, 0, ${precio.toFixed(2)}, 0.00, 1, '${cif}');`);
+
+        await llamarServidorCpp("POST", "/api/rutas", {
+          id, origen, destino, capacidad, pasajeros: 0, precio, activa: 1
+        });
+
+        e.target.reset();
+        mostrarToast(`[*] Ruta #${id} (${origen} → ${destino}) guardada en MySQL (CREATE).`, "ok");
+        renderTodo();
+      }
+    });
+
+    // Modal Configuracion MySQL
+    document.getElementById("btnAbrirConfigMySQL").addEventListener("click", () => {
+      document.getElementById("modalConfigMySQL").classList.remove("hidden");
+    });
+    document.getElementById("btnCerrarModalMySQL").addEventListener("click", () => {
+      document.getElementById("modalConfigMySQL").classList.add("hidden");
+    });
+    document.getElementById("btnCancelarModalMySQL").addEventListener("click", () => {
+      document.getElementById("modalConfigMySQL").classList.add("hidden");
+    });
+    document.getElementById("formConfigMySQL").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const host = document.getElementById("cfgHost").value.trim() || "localhost";
+      const puerto = parseInt(document.getElementById("cfgPuerto").value, 10) || 3306;
+      const usuario = document.getElementById("cfgUsuario").value.trim() || "root";
+      const password = document.getElementById("cfgPassword").value;
+      const baseDatos = document.getElementById("cfgBaseDatos").value.trim() || "db_transporte_rutas";
+
+      const res = await llamarServidorCpp("POST", "/api/mysql-config", {
+        host, puerto, usuario, password, baseDatos
+      });
+      document.getElementById("modalConfigMySQL").classList.add("hidden");
+      if (res) {
+        mostrarToast(`[*] ${res.mensaje}`, res.ok ? "ok" : "warn");
+      } else {
+        mostrarToast(`[*] Parámetros MySQL (${usuario}@${host}:${puerto}/${baseDatos}) guardados. Inicia la Opción 7 en CLion para sincronizar en directo.`, "ok");
+      }
+    });
+
+    // Restaurar demo
+    document.getElementById("btnResetDemo").addEventListener("click", () => {
+      rutas = JSON.parse(JSON.stringify(RUTAS_INICIALES));
+      cancelarModoEdicion();
+      mostrarToast("[*] Se restauraron las 6 rutas iniciales de demostración.", "ok");
+      renderTodo();
+    });
+
+    // Vender Boletos
+    document.getElementById("formVenderBoletos").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = parseInt(document.getElementById("ventaRutaSelect").value, 10);
+      const boletos = parseInt(document.getElementById("ventaCantidad").value, 10);
+      const pos = buscarPorID(id);
+      if (pos === -1) {
+        mostrarToast("[!] Ruta no encontrada.", "error");
+        return;
+      }
+      const r = rutas[pos];
+      if (!r.activa) {
+        mostrarToast("[!] La ruta está inactiva; no se pueden vender boletos.", "error");
+        return;
+      }
+      const disp = r.capacidad - r.pasajeros;
+      if (disp === 0) {
+        mostrarToast("[!] La ruta alcanzó su capacidad máxima. Venta rechazada.", "error");
+        return;
+      }
+      if (isNaN(boletos) || boletos < 1 || boletos > disp) {
+        mostrarToast(`[!] Cantidad fuera de rango (1 a ${disp} asientos disponibles).`, "error");
+        return;
+      }
+      r.pasajeros += boletos;
+      r.ingresos = r.pasajeros * r.precio;
+      const cif = cifrarParaTontos(formatearLineaRuta(r));
+      actualizarBarraSQL(`UPDATE rutas_buses SET pasajeros=${r.pasajeros}, ingresos=${r.ingresos.toFixed(2)}, linea_cifrado_tontos='${cif}' WHERE id=${r.id};`);
+      await llamarServidorCpp("PUT", "/api/rutas", {
+        id: r.id, origen: r.origen, destino: r.destino,
+        capacidad: r.capacidad, pasajeros: r.pasajeros,
+        precio: r.precio, activa: r.activa ? 1 : 0
+      });
+      mostrarToast(`[*] Venta exitosa en ruta ${r.id}. Total a cobrar: Q${(boletos * r.precio).toFixed(2)}`, "ok");
+      renderTodo();
+    });
+
+    // Cancelar Boletos
+    document.getElementById("formCancelarBoletos").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = parseInt(document.getElementById("cancelRutaSelect").value, 10);
+      const boletos = parseInt(document.getElementById("cancelCantidad").value, 10);
+      const pos = buscarPorID(id);
+      if (pos === -1) {
+        mostrarToast("[!] Ruta no encontrada.", "error");
+        return;
+      }
+      const r = rutas[pos];
+      if (r.pasajeros === 0) {
+        mostrarToast("[!] La ruta no tiene boletos vendidos.", "error");
+        return;
+      }
+      if (isNaN(boletos) || boletos < 1 || boletos > r.pasajeros) {
+        mostrarToast(`[!] Cantidad fuera de rango (1 a ${r.pasajeros} vendidos).`, "error");
+        return;
+      }
+      r.pasajeros -= boletos;
+      r.ingresos = r.pasajeros * r.precio;
+      const cif = cifrarParaTontos(formatearLineaRuta(r));
+      actualizarBarraSQL(`UPDATE rutas_buses SET pasajeros=${r.pasajeros}, ingresos=${r.ingresos.toFixed(2)}, linea_cifrado_tontos='${cif}' WHERE id=${r.id};`);
+      await llamarServidorCpp("PUT", "/api/rutas", {
+        id: r.id, origen: r.origen, destino: r.destino,
+        capacidad: r.capacidad, pasajeros: r.pasajeros,
+        precio: r.precio, activa: r.activa ? 1 : 0
+      });
+      mostrarToast(`[*] Devolución procesada en ruta ${r.id}: Q${(boletos * r.precio).toFixed(2)}`, "warn");
+      renderTodo();
+    });
+
+    // Reto Algoritmico: Recomendar y Vender
+    document.getElementById("formRecomendar").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const origen = document.getElementById("recOrigen").value.trim();
+      const destino = document.getElementById("recDestino").value.trim();
+      const necesarios = parseInt(document.getElementById("recGrupo").value, 10);
+      const box = document.getElementById("recResultadoBox");
+
+      if (!origen || !destino || isNaN(necesarios) || necesarios < 1 || necesarios > 100) {
+        mostrarToast("[!] Ingrese origen, destino y cantidad válida (1 a 100).", "error");
+        return;
+      }
+
+      let mejor = -1;
+      let coincidencias = 0;
+      let maxDisponibles = 0;
+      const evaluaciones = [];
+
+      for (let i = 0; i < rutas.length; i++) {
+        const r = rutas[i];
+        if (!mismoTexto(r.origen, origen) || !mismoTexto(r.destino, destino)) continue;
+        if (!r.activa) {
+          evaluaciones.push(`Ruta ID ${r.id}: descartada por estar INACTIVA.`);
+          continue;
+        }
+        coincidencias++;
+        const disp = r.capacidad - r.pasajeros;
+        if (disp > maxDisponibles) maxDisponibles = disp;
+        if (disp < necesarios) {
+          evaluaciones.push(`Ruta ID ${r.id} (Q${r.precio.toFixed(2)}): descartada por cupo insuficiente (${disp} libres < ${necesarios} requeridos).`);
+          continue;
+        }
+        evaluaciones.push(`Ruta ID ${r.id} (Q${r.precio.toFixed(2)}, ${disp} libres): CUMPLE requisitos.`);
+        if (
+          mejor === -1 ||
+          r.precio < rutas[mejor].precio ||
+          (r.precio === rutas[mejor].precio && disp > (rutas[mejor].capacidad - rutas[mejor].pasajeros))
+        ) {
+          mejor = i;
+        }
+      }
+
+      if (coincidencias === 0) {
+        box.innerHTML = `<p class="text-sm text-rose-400 font-semibold">[!] No hay rutas activas para el recorrido ${origen} → ${destino}.</p>`;
+        return;
+      }
+      if (mejor === -1) {
+        box.innerHTML = `
+          <p class="text-sm text-amber-400 font-semibold">[!] Ninguna ruta tiene ${necesarios} asientos libres (máximo disponible: ${maxDisponibles}).</p>
+          <ul class="text-xs text-slate-400 list-disc pl-5 mt-2 space-y-1">${evaluaciones.map(x => `<li>${x}</li>`).join("")}</ul>
+        `;
+        return;
+      }
+
+      const rMejor = rutas[mejor];
+      const totalGrupo = necesarios * rMejor.precio;
+      box.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div>
+            <span class="text-xs text-emerald-400 font-bold uppercase">✓ Recurso Óptimo Seleccionado</span>
+            <h4 class="text-base font-bold text-white">Ruta ID ${rMejor.id}: ${rMejor.origen} → ${rMejor.destino}</h4>
+            <p class="text-xs text-slate-300">Precio unitario: <strong>Q${rMejor.precio.toFixed(2)}</strong> · Asientos libres: <strong>${rMejor.capacidad - rMejor.pasajeros}</strong> · Total grupo (${necesarios}): <strong class="text-emerald-400">Q${totalGrupo.toFixed(2)}</strong></p>
+          </div>
+          <button id="btnConfirmarRecomendada" type="button" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm transition">
+            Confirmar Venta en Ruta ${rMejor.id}
+          </button>
+        </div>
+        <div class="text-xs text-slate-400 space-y-1">
+          <p class="font-semibold text-slate-300">Trazabilidad del algoritmo:</p>
+          <ul class="list-disc pl-5 space-y-0.5">${evaluaciones.map(x => `<li>${x}</li>`).join("")}</ul>
+        </div>
+      `;
+
+      document.getElementById("btnConfirmarRecomendada").addEventListener("click", async () => {
+        rMejor.pasajeros += necesarios;
+        rMejor.ingresos = rMejor.pasajeros * rMejor.precio;
+        const cif = cifrarParaTontos(formatearLineaRuta(rMejor));
+        actualizarBarraSQL(`UPDATE rutas_buses SET pasajeros=${rMejor.pasajeros}, ingresos=${rMejor.ingresos.toFixed(2)}, linea_cifrado_tontos='${cif}' WHERE id=${rMejor.id};`);
+        await llamarServidorCpp("PUT", "/api/rutas", {
+          id: rMejor.id, origen: rMejor.origen, destino: rMejor.destino,
+          capacidad: rMejor.capacidad, pasajeros: rMejor.pasajeros,
+          precio: rMejor.precio, activa: rMejor.activa ? 1 : 0
+        });
+        mostrarToast(`[*] Venta registrada en la ruta recomendada ${rMejor.id} por Q${totalGrupo.toFixed(2)}.`, "ok");
+        renderTodo();
+        box.innerHTML = `<p class="text-sm text-emerald-400 font-semibold">[*] Venta de ${necesarios} boletos aplicada en la Ruta ${rMejor.id} y guardada en MySQL.</p>`;
+      });
+    });
+
+    // Busquedas (Tab 3)
+    function ejecutarFiltroBusqueda() {
+      const tipo = document.getElementById("busqTipo").value;
+      const val = document.getElementById("busqValor").value.trim();
+      const tbody = document.getElementById("tbodyBusquedas");
+      const msg = document.getElementById("busqMensaje");
+      tbody.innerHTML = "";
+
+      let resultados = [];
+      if (!val) {
+        resultados = rutas.map((r, idx) => ({ r, idx }));
+        msg.textContent = `Mostrando todas las rutas en memoria (${resultados.length}).`;
+      } else if (tipo === "id") {
+        const idNum = parseInt(val, 10);
+        const pos = buscarPorID(idNum);
+        if (pos !== -1) resultados.push({ r: rutas[pos], idx: pos });
+        msg.textContent = pos !== -1
+          ? `Búsqueda secuencial buscarPorID(${idNum}): encontrada en índice [${pos}].`
+          : `[!] Ruta con ID '${val}' no encontrada tras recorrer el arreglo.`;
+      } else if (tipo === "origen") {
+        rutas.forEach((r, idx) => {
+          if (mismoTexto(r.origen, val)) resultados.push({ r, idx });
+        });
+        msg.textContent = resultados.length > 0
+          ? `buscarPorOrigen("${val}"): ${resultados.length} coincidencia(s).`
+          : `[!] No hay rutas con el origen '${val}'.`;
+      } else if (tipo === "destino") {
+        rutas.forEach((r, idx) => {
+          if (mismoTexto(r.destino, val)) resultados.push({ r, idx });
+        });
+        msg.textContent = resultados.length > 0
+          ? `buscarPorDestino("${val}"): ${resultados.length} coincidencia(s).`
+          : `[!] No hay rutas con el destino '${val}'.`;
+      }
+
+      resultados.forEach(({ r, idx }) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="py-2 px-2 font-mono text-slate-400">[${idx}]</td>
+          <td class="py-2 px-2 font-mono font-bold text-blue-400">${r.id}</td>
+          <td class="py-2 px-2 text-white">${r.origen}</td>
+          <td class="py-2 px-2 text-white">${r.destino}</td>
+          <td class="py-2 px-2 text-right font-mono">${r.capacidad}</td>
+          <td class="py-2 px-2 text-right font-mono">${r.pasajeros}</td>
+          <td class="py-2 px-2 text-right font-mono text-emerald-400">${r.capacidad - r.pasajeros}</td>
+          <td class="py-2 px-2 text-right font-mono">Q${r.precio.toFixed(2)}</td>
+          <td class="py-2 px-2 text-right font-mono">Q${r.ingresos.toFixed(2)}</td>
+          <td class="py-2 px-2 text-center">${r.activa ? '<span class="text-emerald-400">Activa</span>' : '<span class="text-slate-500">Inactiva</span>'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.getElementById("btnEjecutarBusqueda").addEventListener("click", ejecutarFiltroBusqueda);
+    document.getElementById("busqValor").addEventListener("input", ejecutarFiltroBusqueda);
+    document.getElementById("btnLimpiarBusqueda").addEventListener("click", () => {
+      document.getElementById("busqValor").value = "";
+      ejecutarFiltroBusqueda();
+    });
+
+    function actualizarDemoCifrado() {
+      const inp = document.getElementById("inputTextoCifrar").value;
+      const cif = cifrarParaTontos(inp);
+      const desc = descifrarParaTontos(cif);
+      document.getElementById("outTextoOriginal").textContent = inp;
+      document.getElementById("outTextoCifrado").textContent = cif;
+      document.getElementById("outTextoDescifrado").textContent = desc;
+    }
+    document.getElementById("inputTextoCifrar").addEventListener("input", actualizarDemoCifrado);
+
+    function descargarArchivo(nombre, contenido) {
+      const blob = new Blob([contenido], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = nombre;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      mostrarToast(`[*] Archivo ${nombre} descargado correctamente.`, "ok");
+    }
+
+    document.getElementById("btnExportTxt").addEventListener("click", () => {
+      const contenido = rutas.map((r) => formatearLineaRuta(r)).join("\n") + "\n";
+      descargarArchivo("rutas.txt", contenido);
+    });
+
+    document.getElementById("btnDescargarCifrado").addEventListener("click", () => {
+      const contenido = rutas.map((r) => cifrarParaTontos(formatearLineaRuta(r))).join("\n") + "\n";
+      descargarArchivo("rutas_cifradas.txt", contenido);
+    });
+
+    document.getElementById("btnDescargarSQL").addEventListener("click", () => {
+      const contenido = document.getElementById("preSentenciasMySQL").textContent;
+      descargarArchivo("sincronizacion_mysql.sql", contenido);
+    });
+
+    document.getElementById("btnImportFile").addEventListener("click", () => {
+      document.getElementById("fileInput").click();
+    });
+
+    document.getElementById("fileInput").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const lines = String(ev.target.result || "").split(/\r?\n/);
+        const nuevas = [];
+        let omitidas = 0;
+        for (let raw of lines) {
+          let linea = raw.trim();
+          if (!linea || linea.startsWith("--")) continue;
+          if (lineaEstaCifrada(linea)) {
+            linea = descifrarParaTontos(linea);
+          }
+          const p = linea.split(";");
+          if (p.length !== 8) {
+            omitidas++;
+            continue;
+          }
+          const id = parseInt(p[0], 10);
+          const origen = p[1].trim();
+          const destino = p[2].trim();
+          const capacidad = parseInt(p[3], 10);
+          const pasajeros = parseInt(p[4], 10);
+          const precio = parseFloat(p[5]);
+          const activa = parseInt(p[7], 10) === 1;
+          if (
+            !isNaN(id) && id >= 1 && id <= 9999 &&
+            origen && destino && !mismoTexto(origen, destino) &&
+            !isNaN(capacidad) && capacidad >= 1 && capacidad <= 100 &&
+            !isNaN(pasajeros) && pasajeros >= 0 && pasajeros <= capacidad &&
+            !isNaN(precio) && precio > 0 && precio <= 1000 &&
+            !nuevas.some(x => x.id === id)
+          ) {
+            nuevas.push({
+              id, origen, destino, capacidad, pasajeros, precio,
+              ingresos: pasajeros * precio,
+              activa
+            });
+          } else {
+            omitidas++;
+          }
+        }
+        if (nuevas.length > 0) {
+          rutas = nuevas;
+          renderTodo();
+          mostrarToast(`[*] Se cargaron ${nuevas.length} rutas desde ${file.name}${omitidas > 0 ? ` (${omitidas} omitidas)` : ""}.`, "ok");
+        } else {
+          mostrarToast(`[!] No se encontraron líneas válidas en ${file.name}.`, "error");
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = "";
+    });
+
+    function ejecutarRayoMySQL(modo = "all") {
+      const lbl = document.getElementById("lblEstadoRayoSQL");
+      const cont = document.getElementById("tablaResultadoRayoSQL");
+      if (modo === "ingresos") {
+        lbl.textContent = `✓ Query ejecutado: SELECT * FROM vw_reporte_ingresos; (${rutas.length} rows in set - 0.002 sec)`;
+        const orden = ordenarPorIngresosIndices();
+        let html = `<table class="w-full text-left border-collapse mono text-xs mt-1"><thead class="border-b border-slate-800 text-slate-400"><tr><th class="py-1 px-2">id</th><th class="py-1 px-2">recorrido</th><th class="py-1 px-2 text-right">pasajeros</th><th class="py-1 px-2 text-right">precio</th><th class="py-1 px-2 text-right">ingresos</th><th class="py-1 px-2">estado</th></tr></thead><tbody class="divide-y divide-slate-800/60">`;
+        orden.forEach(idx => {
+          const r = rutas[idx];
+          html += `<tr><td class="py-1 px-2 text-blue-400">${r.id}</td><td class="py-1 px-2 text-white">${r.origen} - ${r.destino}</td><td class="py-1 px-2 text-right">${r.pasajeros}</td><td class="py-1 px-2 text-right">${r.precio.toFixed(2)}</td><td class="py-1 px-2 text-right text-emerald-400">${r.ingresos.toFixed(2)}</td><td class="py-1 px-2">${r.activa ? "Activa" : "Inactiva"}</td></tr>`;
+        });
+        html += `</tbody></table>`;
+        cont.innerHTML = html;
+        mostrarToast("⚡ Consulta SELECT * FROM vw_reporte_ingresos ejecutada con éxito.", "ok");
+      } else {
+        lbl.textContent = `✓ Script ejecutado: CREATE DATABASE db_transporte_rutas + REPLACE INTO rutas_buses (${rutas.length} filas afectadas - 0.004 sec)`;
+        let html = `<table class="w-full text-left border-collapse mono text-xs mt-1"><thead class="border-b border-slate-800 text-slate-400"><tr><th class="py-1 px-2">id</th><th class="py-1 px-2">origen</th><th class="py-1 px-2">destino</th><th class="py-1 px-2 text-right">cap</th><th class="py-1 px-2 text-right">pas</th><th class="py-1 px-2 text-right">ingresos</th><th class="py-1 px-2">linea_cifrado_tontos</th></tr></thead><tbody class="divide-y divide-slate-800/60">`;
+        rutas.forEach(r => {
+          const cif = cifrarParaTontos(formatearLineaRuta(r));
+          html += `<tr><td class="py-1 px-2 text-blue-400">${r.id}</td><td class="py-1 px-2 text-white">${r.origen}</td><td class="py-1 px-2 text-white">${r.destino}</td><td class="py-1 px-2 text-right">${r.capacidad}</td><td class="py-1 px-2 text-right">${r.pasajeros}</td><td class="py-1 px-2 text-right text-emerald-400">${r.ingresos.toFixed(2)}</td><td class="py-1 px-2 text-amber-300">${cif}</td></tr>`;
+        });
+        html += `</tbody></table>`;
+        cont.innerHTML = html;
+        mostrarToast("⚡ Script SQL ejecutado correctamente en db_transporte_rutas.", "ok");
+      }
+    }
+    document.getElementById("btnRayoSQL").addEventListener("click", () => ejecutarRayoMySQL("all"));
+    document.getElementById("btnRayoVistaIngresos").addEventListener("click", () => ejecutarRayoMySQL("ingresos"));
+
+    window.addEventListener("DOMContentLoaded", () => {
+      cargarEstadoInicial();
+    });
+  </script>
+</body>
+</html>

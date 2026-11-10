@@ -1,0 +1,6 @@
+101;Guatemala;Quetzaltenango;40;18;60.00;1080.00;1
+102;Guatemala;Peten;45;45;150.00;6750.00;1
+103;Guatemala;Escuintla;30;12;25.00;300.00;1
+104;Xela;Huehuetenango;35;0;40.00;0.00;1
+105;Guatemala;Quetzaltenango;50;20;55.00;1100.00;1
+106;Coban;Guatemala;38;10;70.00;700.00;0

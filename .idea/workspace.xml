@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="Proyecto_Final_Algoritmos__RiveraCristopher" targetName="Proyecto_Final_Algoritmos__RiveraCristopher" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cd3aa37b-eb8f-49de-95dc-abe8236d62ba" name="Changes" comment="proyecto" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;criveraf2-ui&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/criveraf2-ui/Proyecto_Final_Algoritmos__RiveraCristopher.git&quot;,
+    &quot;accountId&quot;: &quot;35682867-7a03-4a68-a7a7-448c64fc8573&quot;
+  }
+}</component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="uYw44f4p" />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0000000000000806" />
+      <entry key="M2" value="1.00000081409998" />
+      <entry key="M5" value="1.0137914960420065" />
+      <entry key="M10" value="1.3657776073670886" />
+      <entry key="M15" value="2.0975804567041845" />
+      <entry key="M30" value="4.305964351036533" />
+      <entry key="H1" value="6.746539802498886" />
+      <entry key="H2" value="8.579506699859255" />
+      <entry key="H4" value="9.70572014842246" />
+      <entry key="D1" value="10.771590154274804" />
+      <entry key="W1" value="10.96704477035642" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9526379980439373" />
+      <entry key="MS500" value="0.9903428719330246" />
+      <entry key="S2" value="0.9975769252644544" />
+      <entry key="S5" value="0.9990300646389034" />
+      <entry key="S10" value="0.9995149146655609" />
+      <entry key="S30" value="0.9998382787361629" />
+      <entry key="S60" value="0.9999191360986766" />
+      <entry key="M2" value="0.9999603801544229" />
+      <entry key="M5" value="1.0137664917169378" />
+      <entry key="M10" value="1.3656434509237612" />
+      <entry key="M15" value="2.0973150938889047" />
+      <entry key="M30" value="4.305556893481647" />
+      <entry key="H1" value="6.7461803970282475" />
+      <entry key="H2" value="8.579267736927967" />
+      <entry key="H4" value="9.705582332068769" />
+      <entry key="D1" value="10.771564279869393" />
+      <entry key="W1" value="10.967040997731946" />
+    </decayedShown>
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2026" />
+    <option name="minorVersion" value="2.4" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3LAnjMJFluJL1oJwLIymCE1561N" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake Application.Proyecto_Final_Algoritmos__RiveraCristopher.executor": "Run",
+    "CidrDebugProfileConversion": "true",
+    "Git.CreateWorkingTree.LastParentPath": "C:/Users/Administrator/Desktop/u",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Administrator/Desktop/u/Proyecto_Final_Algoritmos_ RiveraCristopher",
+    "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Proyecto_Final_Algoritmos__RiveraCristopher" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Proyecto_Final_Algoritmos__RiveraCristopher" TARGET_NAME="Proyecto_Final_Algoritmos__RiveraCristopher" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Proyecto_Final_Algoritmos__RiveraCristopher" RUN_TARGET_NAME="Proyecto_Final_Algoritmos__RiveraCristopher">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SelectedDebugProfileService">{
+  &quot;profileIdByStamp&quot;: [
+    {
+      &quot;first&quot;: {
+        &quot;##RUN_CONFIGURATION##&quot;: &quot;CMake Application.Proyecto_Final_Algoritmos__RiveraCristopher&quot;,
+        &quot;cmake&quot;: &quot;CMakeBuildProfile:Debug&quot;
+      },
+      &quot;second&quot;: &quot;d894673d-8466-49a1-b3ce-f5c282242ba3&quot;
+    }
+  ],
+  &quot;modificationCount&quot;: 2
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd3aa37b-eb8f-49de-95dc-abe8236d62ba" name="Changes" comment="" />
+      <created>1792905873982</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1792905873982</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+    <isAutomaticBootstrapAfterUpdate value="false" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="proyecto" />
+    <option name="LAST_COMMIT_MESSAGE" value="proyecto" />
+  </component>
+</project>

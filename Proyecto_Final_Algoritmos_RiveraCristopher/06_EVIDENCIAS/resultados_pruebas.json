@@ -1,0 +1,715 @@
+[
+ {
+  "codigo": "P01",
+  "categoria": "Normal",
+  "descripcion": "Registrar una ruta valida",
+  "entrada": "ID 101, Guatemala, Xela, cap 40, Q50.00",
+  "esperado": "Mensaje de exito y ruta guardada en rutas.txt",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n",
+  "checks": [
+   "Ruta registrada con exito"
+  ],
+  "filecheck": [
+   "101;Guatemala;Xela;40;0;50.00;0.00;1"
+  ],
+  "extra": ""
+ },
+ {
+  "codigo": "P02",
+  "categoria": "Error",
+  "descripcion": "ID duplicado",
+  "entrada": "Registrar 101 dos veces",
+  "esperado": "Rechazo: ya existe una ruta con ese ID",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): [!] Ya existe una ruta con ese ID.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: [!] Entrada invalida. Escriba un numero entero.\nOpcion: [!] Entrada invalida. Escriba un numero entero.\nOpcion: [!] Valor fuera de rango (0 a 3).\nOpcion: [!] Valor fuera de rango (0 a 3).\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n",
+  "checks": [
+   "Ya existe una ruta con ese ID"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P03",
+  "categoria": "Borde",
+  "descripcion": "ID 0, negativo y fuera de rango",
+  "entrada": "IDs 0, -5, 10000, luego 7",
+  "esperado": "Cada valor es rechazado y se vuelve a pedir; 7 se acepta",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): [!] Valor fuera de rango (1 a 9999).\nID de la ruta (1-9999): [!] Valor fuera de rango (1 a 9999).\nID de la ruta (1-9999): [!] Valor fuera de rango (1 a 9999).\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "7;A;B;10;0;20.00;0.00;1\n",
+  "archivo_cifrado": ":>D>E>43>3>53133>3133>4\n",
+  "checks": [
+   "Valor fuera de rango (1 a 9999)",
+   "Ruta registrada con exito"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P04",
+  "categoria": "Error",
+  "descripcion": "ID con letras",
+  "entrada": "ID 'abc'",
+  "esperado": "Mensaje de entrada invalida sin bloquear el programa",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): [!] Entrada invalida. Escriba un numero entero.\nID de la ruta (1-9999): [!] Entrada invalida. Escriba un numero entero.\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "3;A;B;10;0;20.00;0.00;1\n",
+  "archivo_cifrado": "6>D>E>43>3>53133>3133>4\n",
+  "checks": [
+   "Entrada invalida. Escriba un numero entero",
+   "Ruta registrada con exito"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P05",
+  "categoria": "Borde",
+  "descripcion": "Capacidad 0, negativa y mayor al maximo",
+  "entrada": "Capacidades 0, -3, 101, luego 1",
+  "esperado": "Rechazadas 0, -3 y 101; se acepta 1 (limite inferior)",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): [!] Valor fuera de rango (1 a 100).\nCapacidad de asientos (1-100): [!] Valor fuera de rango (1 a 100).\nCapacidad de asientos (1-100): [!] Valor fuera de rango (1 a 100).\nCapacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;1;0;10.00;0.00;1\n",
+  "archivo_cifrado": "4>D>E>4>3>43133>3133>4\n",
+  "checks": [
+   "Valor fuera de rango (1 a 100)",
+   "Ruta registrada con exito"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P06",
+  "categoria": "Error",
+  "descripcion": "Precio negativo, cero y con letras",
+  "entrada": "Precios -10, 0, 'gratis', luego 25.50",
+  "esperado": "Rechazados los tres primeros; se acepta 25.50",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): [!] Valor fuera de rango (0.01 a 1000).\nPrecio del pasaje en Q (mayor a 0): [!] Valor fuera de rango (0.01 a 1000).\nPrecio del pasaje en Q (mayor a 0): [!] Entrada invalida. Escriba un numero (ejemplo: 12.50).\nPrecio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;10;0;25.50;0.00;1\n",
+  "archivo_cifrado": "4>D>E>43>3>58183>3133>4\n",
+  "checks": [
+   "Valor fuera de rango (0.01 a 1000)",
+   "Entrada invalida. Escriba un numero",
+   "Ruta registrada con exito"
+  ],
+  "filecheck": [
+   "25.50"
+  ],
+  "extra": ""
+ },
+ {
+  "codigo": "P07",
+  "categoria": "Error",
+  "descripcion": "Origen igual al destino (sin distinguir mayusculas)",
+  "entrada": "Origen 'Xela', destino 'XELA'",
+  "esperado": "Rechazo: origen y destino no pueden ser iguales",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: [!] El origen y el destino no pueden ser iguales.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "",
+  "archivo_cifrado": "",
+  "checks": [
+   "El origen y el destino no pueden ser iguales"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P08",
+  "categoria": "Error",
+  "descripcion": "Texto vacio o solo espacios en origen",
+  "entrada": "Origen '' y '   '",
+  "esperado": "Rechazo: el texto no puede estar vacio; luego se acepta",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: [!] El texto no puede estar vacio.\nOrigen: [!] El texto no puede estar vacio.\nOrigen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;Xela;Peten;10;0;20.00;0.00;1\n",
+  "archivo_cifrado": "4>[hod>Shwhq>43>3>53133>3133>4\n",
+  "checks": [
+   "El texto no puede estar vacio",
+   "Ruta registrada con exito"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P09",
+  "categoria": "Normal",
+  "descripcion": "Venta valida actualiza pasajeros e ingresos",
+  "entrada": "Ruta 101 (cap 40, Q50), vender 3",
+  "esperado": "Total Q150.00; en archivo pasajeros=3 e ingresos=150.00",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: Guatemala -> Xela\nAsientos disponibles: 40 | Precio: Q50.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q150.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;3;50.00;150.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>6>83133>483133>4\n",
+  "checks": [
+   "Venta exitosa. Total a cobrar: Q150.00"
+  ],
+  "filecheck": [
+   "101;Guatemala;Xela;40;3;50.00;150.00;1"
+  ],
+  "extra": ""
+ },
+ {
+  "codigo": "P10",
+  "categoria": "Borde",
+  "descripcion": "Vender exactamente toda la capacidad",
+  "entrada": "Ruta cap 5, vender 5",
+  "esperado": "Venta aceptada; asientos disponibles queda en 0",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: A -> B\nAsientos disponibles: 5 | Precio: Q10.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q50.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;5;5;10.00;50.00;1\n",
+  "archivo_cifrado": "4>D>E>8>8>43133>83133>4\n",
+  "checks": [
+   "Venta exitosa. Total a cobrar: Q50.00"
+  ],
+  "filecheck": [
+   "1;A;B;5;5;10.00;50.00;1"
+  ],
+  "extra": ""
+ },
+ {
+  "codigo": "P11",
+  "categoria": "Error",
+  "descripcion": "Vender mas boletos que los disponibles",
+  "entrada": "Cap 5, intentar 6 y luego 0",
+  "esperado": "Rechazo por rango (1 a 5): nunca se sobrevende",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: A -> B\nAsientos disponibles: 5 | Precio: Q10.00\nBoletos a vender (0 = cancelar): [!] Valor fuera de rango (0 a 5).\nBoletos a vender (0 = cancelar): [*] Venta cancelada.\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;5;0;10.00;0.00;1\n",
+  "archivo_cifrado": "4>D>E>8>3>43133>3133>4\n",
+  "checks": [
+   "Valor fuera de rango (0 a 5)"
+  ],
+  "filecheck": [
+   "1;A;B;5;0;10.00;0.00;1"
+  ],
+  "extra": ""
+ },
+ {
+  "codigo": "P12",
+  "categoria": "Borde",
+  "descripcion": "Vender en una ruta ya llena",
+  "entrada": "Llenar ruta de 5 y vender de nuevo",
+  "esperado": "Rechazo: ruta alcanzo su capacidad maxima",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: A -> B\nAsientos disponibles: 5 | Precio: Q10.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q50.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: A -> B\nAsientos disponibles: 0 | Precio: Q10.00\n[!] La ruta alcanzo su capacidad maxima. Venta rechazada.\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;5;5;10.00;50.00;1\n",
+  "archivo_cifrado": "4>D>E>8>8>43133>83133>4\n",
+  "checks": [
+   "alcanzo su capacidad maxima. Venta rechazada"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P13",
+  "categoria": "Error",
+  "descripcion": "Vender en ruta inexistente",
+  "entrada": "ID 999",
+  "esperado": "Mensaje: ruta no encontrada",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: [!] Ruta no encontrada.\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "",
+  "archivo_cifrado": "",
+  "checks": [
+   "Ruta no encontrada"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P14",
+  "categoria": "Error",
+  "descripcion": "Vender en ruta inactiva",
+  "entrada": "Desactivar ruta 101 y vender",
+  "esperado": "Rechazo: ruta inactiva",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- ACTIVAR / DESACTIVAR RUTA ---\nID de la ruta: [*] La ruta 101 ahora esta INACTIVA.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: [!] La ruta esta inactiva; no se pueden vender boletos.\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;0\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>3\n",
+  "checks": [
+   "ahora esta INACTIVA",
+   "La ruta esta inactiva"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P15",
+  "categoria": "Normal",
+  "descripcion": "Cancelar boletos recalcula ingresos",
+  "entrada": "Vender 4 y cancelar 1 en ruta Q10",
+  "esperado": "Devolucion Q10.00; archivo con pasajeros=3 e ingresos=30.00",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: A -> B\nAsientos disponibles: 10 | Precio: Q10.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q40.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- CANCELACION DE BOLETOS ---\nID de la ruta: Boletos vendidos: 4\nBoletos a cancelar (0 = salir): [*] Devolucion: Q10.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;10;3;10.00;30.00;1\n",
+  "archivo_cifrado": "4>D>E>43>6>43133>63133>4\n",
+  "checks": [
+   "Devolucion: Q10.00"
+  ],
+  "filecheck": [
+   "1;A;B;10;3;10.00;30.00;1"
+  ],
+  "extra": ""
+ },
+ {
+  "codigo": "P16",
+  "categoria": "Error",
+  "descripcion": "Cancelar en ruta sin boletos vendidos",
+  "entrada": "Ruta nueva, cancelar",
+  "esperado": "Mensaje: no tiene boletos vendidos",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- CANCELACION DE BOLETOS ---\nID de la ruta: [!] La ruta no tiene boletos vendidos.\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;10;0;10.00;0.00;1\n",
+  "archivo_cifrado": "4>D>E>43>3>43133>3133>4\n",
+  "checks": [
+   "La ruta no tiene boletos vendidos"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P17",
+  "categoria": "Normal",
+  "descripcion": "Busqueda por origen sin distinguir mayusculas",
+  "entrada": "Buscar 'guatemala' (registrado 'Guatemala')",
+  "esperado": "Muestra las rutas con ese origen",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- BUSQUEDAS ---\n1. Buscar por ID\n2. Buscar por origen\n3. Buscar por destino\n0. Volver\nOpcion: \n--- BUSCAR POR ORIGEN ---\nCiudad de origen: \nID    Origen          Destino           Cap. Pasaj.  Disp.    Precio    Ingresos  Estado\n----------------------------------------------------------------------------------------\n101   Guatemala       Xela                40      0     40     50.00        0.00  Activa\n102   Guatemala       Peten               30      0     30    120.00        0.00  Activa\n\n--- BUSQUEDAS ---\n1. Buscar por ID\n2. Buscar por origen\n3. Buscar por destino\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n102;Guatemala;Peten;30;0;120.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n435>Jxdwhpdod>Shwhq>63>3>453133>3133>4\n",
+  "checks": [
+   "Xela",
+   "Peten"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P18",
+  "categoria": "Error",
+  "descripcion": "Busqueda por origen inexistente",
+  "entrada": "Origen 'Mixco'",
+  "esperado": "Mensaje: no hay rutas con ese origen",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- BUSQUEDAS ---\n1. Buscar por ID\n2. Buscar por origen\n3. Buscar por destino\n0. Volver\nOpcion: \n--- BUSCAR POR ORIGEN ---\nCiudad de origen: [!] No hay rutas con ese origen.\n\n--- BUSQUEDAS ---\n1. Buscar por ID\n2. Buscar por origen\n3. Buscar por destino\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n",
+  "checks": [
+   "No hay rutas con ese origen"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P19",
+  "categoria": "Normal",
+  "descripcion": "Busqueda por destino",
+  "entrada": "Destino 'xela'",
+  "esperado": "Lista la ruta 101",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- BUSQUEDAS ---\n1. Buscar por ID\n2. Buscar por origen\n3. Buscar por destino\n0. Volver\nOpcion: \n--- BUSCAR POR DESTINO ---\nCiudad de destino: \nID    Origen          Destino           Cap. Pasaj.  Disp.    Precio    Ingresos  Estado\n----------------------------------------------------------------------------------------\n101   Guatemala       Xela                40      0     40     50.00        0.00  Activa\n\n--- BUSQUEDAS ---\n1. Buscar por ID\n2. Buscar por origen\n3. Buscar por destino\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n",
+  "checks": [
+   "101"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P20",
+  "categoria": "Normal",
+  "descripcion": "Busqueda secuencial por ID",
+  "entrada": "Buscar ID 101 y ID 55",
+  "esperado": "101 se muestra; 55 informa no encontrada",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- BUSQUEDAS ---\n1. Buscar por ID\n2. Buscar por origen\n3. Buscar por destino\n0. Volver\nOpcion: ID de la ruta: \nID    Origen          Destino           Cap. Pasaj.  Disp.    Precio    Ingresos  Estado\n----------------------------------------------------------------------------------------\n101   Guatemala       Xela                40      0     40     50.00        0.00  Activa\n\n--- BUSQUEDAS ---\n1. Buscar por ID\n2. Buscar por origen\n3. Buscar por destino\n0. Volver\nOpcion: ID de la ruta: [!] Ruta no encontrada.\n\n--- BUSQUEDAS ---\n1. Buscar por ID\n2. Buscar por origen\n3. Buscar por destino\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n",
+  "checks": [
+   "Guatemala",
+   "Ruta no encontrada"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P21",
+  "categoria": "Normal",
+  "descripcion": "Ranking por ingresos (burbuja) mayor a menor",
+  "entrada": "Ingresos: R1=Q50, R2=Q150, R3=Q100",
+  "esperado": "Orden: ruta 2, ruta 3, ruta 1",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: A -> B\nAsientos disponibles: 10 | Precio: Q10.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q50.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: C -> D\nAsientos disponibles: 10 | Precio: Q30.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q150.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: E -> F\nAsientos disponibles: 10 | Precio: Q20.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q100.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n--- REPORTE 1: RUTAS POR INGRESOS ---\nPos  ID    Recorrido                           Pasaj.  Ingresos (Q)\n-------------------------------------------------------------------\n1    2     C - D                                    5        150.00\n2    3     E - F                                    5        100.00\n3    1     A - B                                    5         50.00\n\n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;10;5;10.00;50.00;1\n2;C;D;10;5;30.00;150.00;1\n3;E;F;10;5;20.00;100.00;1\n",
+  "archivo_cifrado": "4>D>E>43>8>43133>83133>4\n5>F>G>43>8>63133>483133>4\n6>H>I>43>8>53133>433133>4\n",
+  "checks": [
+   "Q"
+  ],
+  "filecheck": [],
+  "extra": "Orden obtenido en el reporte: C-D (Q150), E-F (Q100), A-B (Q50)"
+ },
+ {
+  "codigo": "P22",
+  "categoria": "Borde",
+  "descripcion": "Empate de ingresos: desempata por pasajeros y luego ID",
+  "entrada": "R5 y R2 con mismos ingresos y pasajeros",
+  "esperado": "Primero la ruta de menor ID (2)",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: A -> B\nAsientos disponibles: 10 | Precio: Q10.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q20.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: C -> D\nAsientos disponibles: 10 | Precio: Q10.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q20.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n--- REPORTE 1: RUTAS POR INGRESOS ---\nPos  ID    Recorrido                           Pasaj.  Ingresos (Q)\n-------------------------------------------------------------------\n1    2     C - D                                    2         20.00\n2    5     A - B                                    2         20.00\n\n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "5;A;B;10;2;10.00;20.00;1\n2;C;D;10;2;10.00;20.00;1\n",
+  "archivo_cifrado": "8>D>E>43>5>43133>53133>4\n5>F>G>43>5>43133>53133>4\n",
+  "checks": [
+   "Q"
+  ],
+  "filecheck": [],
+  "extra": "Orden obtenido: ruta 2 (C-D) y despues ruta 5 (A-B)"
+ },
+ {
+  "codigo": "P23",
+  "categoria": "Borde",
+  "descripcion": "Reportes sin rutas registradas",
+  "entrada": "Abrir reportes 1, 2 y 3 sin datos",
+  "esperado": "Mensaje claro sin errores ni division entre cero",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n--- REPORTE 1: RUTAS POR INGRESOS ---\n[!] No hay rutas registradas.\n\n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n--- REPORTE 2: OCUPACION Y DISPONIBILIDAD ---\n[!] No hay rutas registradas.\n\n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n--- REPORTE 3: RESUMEN GENERAL ---\n[!] No hay rutas registradas.\n\n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "",
+  "archivo_cifrado": "",
+  "checks": [
+   "No hay rutas registradas"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P24",
+  "categoria": "Normal",
+  "descripcion": "Reporte de ocupacion",
+  "entrada": "Cap 4, vender 4 en R1 (llena) y R2 sin ventas",
+  "esperado": "R1 aparece como LLENA con 100.0%",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: A -> B\nAsientos disponibles: 4 | Precio: Q10.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q40.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n--- REPORTE 2: OCUPACION Y DISPONIBILIDAD ---\nID    Recorrido                           Cap.  Ocup.  Disp.   % Ocup.  Estado\n--------------------------------------------------------------------------------\n1     A - B                                  4      4      0    100.0%  LLENA\n2     C - D                                  4      0      4      0.0%  Disponible\n\n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;4;4;10.00;40.00;1\n2;C;D;4;0;10.00;0.00;1\n",
+  "archivo_cifrado": "4>D>E>7>7>43133>73133>4\n5>F>G>7>3>43133>3133>4\n",
+  "checks": [
+   "LLENA",
+   "100.0%",
+   "Disponible"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P25",
+  "categoria": "Normal",
+  "descripcion": "Resumen general",
+  "entrada": "2 rutas, ventas conocidas",
+  "esperado": "Pasajeros, ingresos totales (Q150.00) y rutas extremas correctas",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: A -> B\nAsientos disponibles: 10 | Precio: Q10.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q50.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: C -> D\nAsientos disponibles: 10 | Precio: Q20.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q100.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n--- REPORTE 3: RESUMEN GENERAL ---\nRutas registradas:        2 (activas: 2, inactivas: 0)\nRutas llenas:             0\nPasajeros transportados:  10 de 20 asientos\nOcupacion global:         50.00%\nIngresos totales:         Q150.00\nIngreso promedio / ruta:  Q75.00\nRuta de mayor ingreso:    2 (C - D) Q100.00\nRuta mas ocupada:         1 (A - B)\nRuta con mas asientos:    1 (A - B) con 5 libres\n\n--- REPORTES ---\n1. Rutas ordenadas por ingresos\n2. Ocupacion y disponibilidad\n3. Resumen general\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;A;B;10;5;10.00;50.00;1\n2;C;D;10;5;20.00;100.00;1\n",
+  "archivo_cifrado": "4>D>E>43>8>43133>83133>4\n5>F>G>43>8>53133>433133>4\n",
+  "checks": [
+   "Ingresos totales:         Q150.00",
+   "Pasajeros transportados:  10 de 20",
+   "Ocupacion global:         50.00%"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P26",
+  "categoria": "Normal",
+  "descripcion": "RETO: recomienda la ruta mas barata con cupo para el grupo",
+  "entrada": "Grupo de 5; rutas Q60 (10), Q45 (10), Q30 (cap 2)",
+  "esperado": "Recomienda la ruta 2 (Q45): la de Q30 se descarta por no caber el grupo",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- RECOMENDAR RUTA Y VENDER ---\nOrigen: Destino: Cantidad de pasajeros (1-100): \nRuta recomendada:\nID    Origen          Destino           Cap. Pasaj.  Disp.    Precio    Ingresos  Estado\n----------------------------------------------------------------------------------------\n2     Guate           Xela                10      0     10     45.00        0.00  Activa\nTotal del grupo: Q225.00\nVender ahora? (1 = si, 0 = no): [*] Venta registrada en la ruta 2.\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;Guate;Xela;10;0;60.00;0.00;1\n2;Guate;Xela;10;5;45.00;225.00;1\n3;Guate;Xela;2;0;30.00;0.00;1\n",
+  "archivo_cifrado": "4>Jxdwh>[hod>43>3>93133>3133>4\n5>Jxdwh>[hod>43>8>78133>558133>4\n6>Jxdwh>[hod>5>3>63133>3133>4\n",
+  "checks": [
+   "Venta registrada en la ruta 2"
+  ],
+  "filecheck": [
+   "2;Guate;Xela;10;5;45.00;225.00;1"
+  ],
+  "extra": ""
+ },
+ {
+  "codigo": "P27",
+  "categoria": "Borde",
+  "descripcion": "RETO: empate de precio elige la de mas asientos libres",
+  "entrada": "Dos rutas Q50; una ya con 8 vendidos",
+  "esperado": "Recomienda la ruta con mas libres (ruta 2)",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: G -> X\nAsientos disponibles: 10 | Precio: Q50.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q400.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- RECOMENDAR RUTA Y VENDER ---\nOrigen: Destino: Cantidad de pasajeros (1-100): \nRuta recomendada:\nID    Origen          Destino           Cap. Pasaj.  Disp.    Precio    Ingresos  Estado\n----------------------------------------------------------------------------------------\n2     G               X                   10      0     10     50.00        0.00  Activa\nTotal del grupo: Q50.00\nVender ahora? (1 = si, 0 = no): [*] Venta registrada en la ruta 2.\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;G;X;10;8;50.00;400.00;1\n2;G;X;10;1;50.00;50.00;1\n",
+  "archivo_cifrado": "4>J>[>43>;>83133>733133>4\n5>J>[>43>4>83133>83133>4\n",
+  "checks": [
+   "Venta registrada en la ruta 2"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P28",
+  "categoria": "Error",
+  "descripcion": "RETO: ningun bus tiene cupo suficiente",
+  "entrada": "Grupo de 8 y la mayor disponibilidad es 5",
+  "esperado": "Mensaje con maximo disponible 5; no se vende",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- RECOMENDAR RUTA Y VENDER ---\nOrigen: Destino: Cantidad de pasajeros (1-100): [!] Ninguna ruta tiene 8 asientos libres (maximo disponible: 5).\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;G;X;5;0;50.00;0.00;1\n",
+  "archivo_cifrado": "4>J>[>8>3>83133>3133>4\n",
+  "checks": [
+   "Ninguna ruta tiene 8 asientos libres (maximo disponible: 5)"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P29",
+  "categoria": "Error",
+  "descripcion": "Recomendar para recorrido inexistente",
+  "entrada": "Origen/Destino no registrados",
+  "esperado": "Mensaje: no hay rutas activas para ese recorrido",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- RECOMENDAR RUTA Y VENDER ---\nOrigen: Destino: Cantidad de pasajeros (1-100): [!] No hay rutas activas para ese recorrido.\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n",
+  "checks": [
+   "No hay rutas activas para ese recorrido"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P30",
+  "categoria": "Normal",
+  "descripcion": "Persistencia: cargar archivo de una ejecucion previa",
+  "entrada": "rutas.txt con 2 rutas existentes",
+  "esperado": "Mensaje 'Se cargaron 2 rutas' y datos disponibles",
+  "ok": true,
+  "salida": "[*] Se cargaron 2 rutas.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- LISTADO DE RUTAS (2) ---\nID    Origen          Destino           Cap. Pasaj.  Disp.    Precio    Ingresos  Estado\n----------------------------------------------------------------------------------------\n10    Guatemala       Xela                40      3     37     50.00      150.00  Activa\n20    Peten           Flores              20      0     20     80.00        0.00  Inactiva\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "10;Guatemala;Xela;40;3;50.00;150.00;1\n20;Peten;Flores;20;0;80.00;0.00;0\n",
+  "archivo_cifrado": "43>Jxdwhpdod>[hod>73>6>83133>483133>4\n53>Shwhq>Ioruhv>53>3>;3133>3133>3\n",
+  "checks": [
+   "Se cargaron 2 rutas",
+   "Flores"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P31",
+  "categoria": "Normal",
+  "descripcion": "Persistencia: guardar, y datos intactos al reabrir",
+  "entrada": "Cargar, vender 2 boletos, salir",
+  "esperado": "Archivo actualizado: pasajeros=5 e ingresos=250.00",
+  "ok": true,
+  "salida": "[*] Se cargaron 2 rutas.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: Guatemala -> Xela\nAsientos disponibles: 37 | Precio: Q50.00\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q100.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "10;Guatemala;Xela;40;5;50.00;250.00;1\n20;Peten;Flores;20;0;80.00;0.00;0\n",
+  "archivo_cifrado": "43>Jxdwhpdod>[hod>73>8>83133>583133>4\n53>Shwhq>Ioruhv>53>3>;3133>3133>3\n",
+  "checks": [
+   "Venta exitosa"
+  ],
+  "filecheck": [
+   "10;Guatemala;Xela;40;5;50.00;250.00;1",
+   "20;Peten;Flores;20;0;80.00;0.00;0"
+  ],
+  "extra": ""
+ },
+ {
+  "codigo": "P32",
+  "categoria": "Error",
+  "descripcion": "Archivo corrupto: lineas invalidas se omiten",
+  "entrada": "Archivo con basura, pasajeros>capacidad, capacidad negativa y ID repetido",
+  "esperado": "Se cargan solo las 2 lineas validas y se avisa de 4 omitidas",
+  "ok": true,
+  "salida": "[!] Linea 2 invalida u omitida en rutas.txt.\n[!] Linea 3 invalida u omitida en rutas.txt.\n[!] Linea 4 invalida u omitida en rutas.txt.\n[!] Linea 5 invalida u omitida en rutas.txt.\n[*] Se cargaron 2 rutas (4 omitidas).\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "10;Guatemala;Xela;40;3;50.00;150.00;1\n13;C;D;10;0;7.00;0.00;1\n",
+  "archivo_cifrado": "43>Jxdwhpdod>[hod>73>6>83133>483133>4\n46>F>G>43>3>:133>3133>4\n",
+  "checks": [
+   "Se cargaron 2 rutas (4 omitidas)"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P33",
+  "categoria": "Borde",
+  "descripcion": "Sin archivo previo",
+  "entrada": "No existe rutas.txt",
+  "esperado": "Mensaje de inicio limpio y el programa funciona",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- LISTADO DE RUTAS (0) ---\n[!] No hay rutas registradas.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "",
+  "archivo_cifrado": "",
+  "checks": [
+   "No hay archivo previo",
+   "No hay rutas registradas"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P34",
+  "categoria": "Error",
+  "descripcion": "Opcion de menu invalida (letras, simbolos, fuera de rango)",
+  "entrada": "'x', '9', '', '2.5'",
+  "esperado": "Cada una rechazada; el menu se vuelve a mostrar",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: [!] Entrada invalida. Escriba un numero entero.\nSeleccione una opcion: [!] Valor fuera de rango (0 a 6).\nSeleccione una opcion: [!] Entrada invalida. Escriba un numero entero.\nSeleccione una opcion: [!] Entrada invalida. Escriba un numero entero.\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "",
+  "archivo_cifrado": "",
+  "checks": [
+   "Entrada invalida",
+   "fuera de rango"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P35",
+  "categoria": "Error",
+  "descripcion": "Fin de la entrada sin cerrar el programa",
+  "entrada": "Se corta la entrada en medio de un registro",
+  "esperado": "El programa termina de forma controlada sin ciclo infinito",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: \n[!] Entrada cerrada. Fin del programa.\n",
+  "archivo": null,
+  "archivo_cifrado": null,
+  "checks": [
+   "Entrada cerrada"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P36",
+  "categoria": "Borde",
+  "descripcion": "Limite de 100 rutas en el arreglo",
+  "entrada": "Registrar 100 rutas e intentar la 101",
+  "esperado": "Mensaje de limite alcanzado; sin desbordar el arreglo",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n[!] Limite de 100 rutas alcanzado.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: [!] Valor fuera de rango (0 a 3).\nOpcion: [!] Entrada invalida. Escriba un numero entero.\nOpcion: [!] Entrada invalida. Escriba un numero entero.\nOpcion: [!] Valor fuera de rango (0 a 3).\nOpcion: [!] Valor fuera de rango (0 a 3).\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "1;O1;D1;10;0;10.00;0.00;1\n2;O2;D2;10;0;10.00;0.00;1\n3;O3;D3;10;0;10.00;0.00;1\n4;O4;D4;10;0;10.00;0.00;1\n5;O5;D5;10;0;10.00;0.00;1\n6;O6;D6;10;0;10.00;0.00;1\n7;O7;D7;10;0;10.00;0.00;1\n8;O8;D8;10;0;10.00;0.00;1\n9;O9;D9;10;0;10.00;0.00;1\n10;O10;D10;10;0;10.00;0.00;1\n11;O11;D11;10;0;10.00;0.00;1\n12;O12;D12;10;0;10.00;0.00;1\n13;O13;D13;10;0;10.00;0.00;1\n14;O14;D14;10;0;10.00;0.00;1\n15;O15;D15;10;0;10.00;0.00;1\n16;O16;D16;10;0;10.00;0.00;1\n17;O17;D17;10;0;10.00;0.00;1\n18;O18;D18;10;0;10.00;0.00;1\n19;O19;D19;10;0;10.00;0.00;1\n20;O20;D20;10;0;10.00;0.00;1\n21;O21;D21;10;0;10.00;0.00;1\n22;O22;D22;10;0;10.00;0.00;1\n23;O23;D23;10;0;10.00;0.00;1\n24;O24;D24;10;0;10.00;0.00;1\n25;O25;D25;10;0;10.00;0.00;1\n26;O26;D26;10;0;10.00;0.00;1\n27;O27;D27;10;0;10.00;0.00;1\n28;O28;D28;10;0;10.00;0.00;1\n29;O29;D29;10;0;10.00;0.00;1\n30;O30;D30;10;0;10.00;0.00;1\n31;O31;D31;10;0;10.00;0.00;1\n32;O32;D32;10;0;10.00;0.00;1\n33;O33;D33;10;0;10.00;0.00;1\n34;O34;D34;10;0;10.00;0.00;1\n35;O35;D35;10;0;10.00;0.00;1\n36;O36;D36;10;0;10.00;0.00;1\n37;O37;D37;10;0;10.00;0.00;1\n38;O38;D38;10;0;10.00;0.00;1\n39;O39;D39;10;0;10.00;0.00;1\n40;O40;D40;10;0;10.00;0.00;1\n41;O41;D41;10;0;10.00;0.00;1\n42;O42;D42;10;0;10.00;0.00;1\n43;O43;D43;10;0;10.00;0.00;1\n44;O44;D44;10;0;10.00;0.00;1\n45;O45;D45;10;0;10.00;0.00;1\n46;O46;D46;10;0;10.00;0.00;1\n47;O47;D47;10;0;10.00;0.00;1\n48;O48;D48;10;0;10.00;0.00;1\n49;O49;D49;10;0;10.00;0.00;1\n50;O50;D50;10;0;10.00;0.00;1\n51;O51;D51;10;0;10.00;0.00;1\n52;O52;D52;10;0;10.00;0.00;1\n53;O53;D53;10;0;10.00;0.00;1\n54;O54;D54;10;0;10.00;0.00;1\n55;O55;D55;10;0;10.00;0.00;1\n56;O56;D56;10;0;10.00;0.00;1\n57;O57;D57;10;0;10.00;0.00;1\n58;O58;D58;10;0;10.00;0.00;1\n59;O59;D59;10;0;10.00;0.00;1\n60;O60;D60;10;0;10.00;0.00;1\n61;O61;D61;10;0;10.00;0.00;1\n62;O62;D62;10;0;10.00;0.00;1\n63;O63;D63;10;0;10.00;0.00;1\n64;O64;D64;10;0;10.00;0.00;1\n65;O65;D65;10;0;10.00;0.00;1\n66;O66;D66;10;0;10.00;0.00;1\n67;O67;D67;10;0;10.00;0.00;1\n68;O68;D68;10;0;10.00;0.00;1\n69;O69;D69;10;0;10.00;0.00;1\n70;O70;D70;10;0;10.00;0.00;1\n71;O71;D71;10;0;10.00;0.00;1\n72;O72;D72;10;0;10.00;0.00;1\n73;O73;D73;10;0;10.00;0.00;1\n74;O74;D74;10;0;10.00;0.00;1\n75;O75;D75;10;0;10.00;0.00;1\n76;O76;D76;10;0;10.00;0.00;1\n77;O77;D77;10;0;10.00;0.00;1\n78;O78;D78;10;0;10.00;0.00;1\n79;O79;D79;10;0;10.00;0.00;1\n80;O80;D80;10;0;10.00;0.00;1\n81;O81;D81;10;0;10.00;0.00;1\n82;O82;D82;10;0;10.00;0.00;1\n83;O83;D83;10;0;10.00;0.00;1\n84;O84;D84;10;0;10.00;0.00;1\n85;O85;D85;10;0;10.00;0.00;1\n86;O86;D86;10;0;10.00;0.00;1\n87;O87;D87;10;0;10.00;0.00;1\n88;O88;D88;10;0;10.00;0.00;1\n89;O89;D89;10;0;10.00;0.00;1\n90;O90;D90;10;0;10.00;0.00;1\n91;O91;D91;10;0;10.00;0.00;1\n92;O92;D92;10;0;10.00;0.00;1\n93;O93;D93;10;0;10.00;0.00;1\n94;O94;D94;10;0;10.00;0.00;1\n95;O95;D95;10;0;10.00;0.00;1\n96;O96;D96;10;0;10.00;0.00;1\n97;O97;D97;10;0;10.00;0.00;1\n98;O98;D98;10;0;10.00;0.00;1\n99;O99;D99;10;0;10.00;0.00;1\n100;O100;D100;10;0;10.00;0.00;1\n",
+  "archivo_cifrado": "4>R4>G4>43>3>43133>3133>4\n5>R5>G5>43>3>43133>3133>4\n6>R6>G6>43>3>43133>3133>4\n7>R7>G7>43>3>43133>3133>4\n8>R8>G8>43>3>43133>3133>4\n9>R9>G9>43>3>43133>3133>4\n:>R:>G:>43>3>43133>3133>4\n;>R;>G;>43>3>43133>3133>4\n<>R<>G<>43>3>43133>3133>4\n43>R43>G43>43>3>43133>3133>4\n44>R44>G44>43>3>43133>3133>4\n45>R45>G45>43>3>43133>3133>4\n46>R46>G46>43>3>43133>3133>4\n47>R47>G47>43>3>43133>3133>4\n48>R48>G48>43>3>43133>3133>4\n49>R49>G49>43>3>43133>3133>4\n4:>R4:>G4:>43>3>43133>3133>4\n4;>R4;>G4;>43>3>43133>3133>4\n4<>R4<>G4<>43>3>43133>3133>4\n53>R53>G53>43>3>43133>3133>4\n54>R54>G54>43>3>43133>3133>4\n55>R55>G55>43>3>43133>3133>4\n56>R56>G56>43>3>43133>3133>4\n57>R57>G57>43>3>43133>3133>4\n58>R58>G58>43>3>43133>3133>4\n59>R59>G59>43>3>43133>3133>4\n5:>R5:>G5:>43>3>43133>3133>4\n5;>R5;>G5;>43>3>43133>3133>4\n5<>R5<>G5<>43>3>43133>3133>4\n63>R63>G63>43>3>43133>3133>4\n64>R64>G64>43>3>43133>3133>4\n65>R65>G65>43>3>43133>3133>4\n66>R66>G66>43>3>43133>3133>4\n67>R67>G67>43>3>43133>3133>4\n68>R68>G68>43>3>43133>3133>4\n69>R69>G69>43>3>43133>3133>4\n6:>R6:>G6:>43>3>43133>3133>4\n6;>R6;>G6;>43>3>43133>3133>4\n6<>R6<>G6<>43>3>43133>3133>4\n73>R73>G73>43>3>43133>3133>4\n74>R74>G74>43>3>43133>3133>4\n75>R75>G75>43>3>43133>3133>4\n76>R76>G76>43>3>43133>3133>4\n77>R77>G77>43>3>43133>3133>4\n78>R78>G78>43>3>43133>3133>4\n79>R79>G79>43>3>43133>3133>4\n7:>R7:>G7:>43>3>43133>3133>4\n7;>R7;>G7;>43>3>43133>3133>4\n7<>R7<>G7<>43>3>43133>3133>4\n83>R83>G83>43>3>43133>3133>4\n84>R84>G84>43>3>43133>3133>4\n85>R85>G85>43>3>43133>3133>4\n86>R86>G86>43>3>43133>3133>4\n87>R87>G87>43>3>43133>3133>4\n88>R88>G88>43>3>43133>3133>4\n89>R89>G89>43>3>43133>3133>4\n8:>R8:>G8:>43>3>43133>3133>4\n8;>R8;>G8;>43>3>43133>3133>4\n8<>R8<>G8<>43>3>43133>3133>4\n93>R93>G93>43>3>43133>3133>4\n94>R94>G94>43>3>43133>3133>4\n95>R95>G95>43>3>43133>3133>4\n96>R96>G96>43>3>43133>3133>4\n97>R97>G97>43>3>43133>3133>4\n98>R98>G98>43>3>43133>3133>4\n99>R99>G99>43>3>43133>3133>4\n9:>R9:>G9:>43>3>43133>3133>4\n9;>R9;>G9;>43>3>43133>3133>4\n9<>R9<>G9<>43>3>43133>3133>4\n:3>R:3>G:3>43>3>43133>3133>4\n:4>R:4>G:4>43>3>43133>3133>4\n:5>R:5>G:5>43>3>43133>3133>4\n:6>R:6>G:6>43>3>43133>3133>4\n:7>R:7>G:7>43>3>43133>3133>4\n:8>R:8>G:8>43>3>43133>3133>4\n:9>R:9>G:9>43>3>43133>3133>4\n::>R::>G::>43>3>43133>3133>4\n:;>R:;>G:;>43>3>43133>3133>4\n:<>R:<>G:<>43>3>43133>3133>4\n;3>R;3>G;3>43>3>43133>3133>4\n;4>R;4>G;4>43>3>43133>3133>4\n;5>R;5>G;5>43>3>43133>3133>4\n;6>R;6>G;6>43>3>43133>3133>4\n;7>R;7>G;7>43>3>43133>3133>4\n;8>R;8>G;8>43>3>43133>3133>4\n;9>R;9>G;9>43>3>43133>3133>4\n;:>R;:>G;:>43>3>43133>3133>4\n;;>R;;>G;;>43>3>43133>3133>4\n;<>R;<>G;<>43>3>43133>3133>4\n<3>R<3>G<3>43>3>43133>3133>4\n<4>R<4>G<4>43>3>43133>3133>4\n<5>R<5>G<5>43>3>43133>3133>4\n<6>R<6>G<6>43>3>43133>3133>4\n<7>R<7>G<7>43>3>43133>3133>4\n<8>R<8>G<8>43>3>43133>3133>4\n<9>R<9>G<9>43>3>43133>3133>4\n<:>R<:>G<:>43>3>43133>3133>4\n<;>R<;>G<;>43>3>43133>3133>4\n<<>R<<>G<<>43>3>43133>3133>4\n433>R433>G433>43>3>43133>3133>4\n",
+  "checks": [
+   "Limite de 100 rutas alcanzado"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P37",
+  "categoria": "Normal",
+  "descripcion": "Activar y reactivar ruta",
+  "entrada": "Desactivar y activar de nuevo la ruta 101",
+  "esperado": "Estado alterna INACTIVA -> ACTIVA",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- ACTIVAR / DESACTIVAR RUTA ---\nID de la ruta: [*] La ruta 101 ahora esta INACTIVA.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- ACTIVAR / DESACTIVAR RUTA ---\nID de la ruta: [*] La ruta 101 ahora esta ACTIVA.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n",
+  "checks": [
+   "ahora esta INACTIVA",
+   "ahora esta ACTIVA"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P38",
+  "categoria": "Error",
+  "descripcion": "Decimal en campo entero y espacios alrededor del numero",
+  "entrada": "Boletos '2.5' y ' 3 '",
+  "esperado": "2.5 rechazado; ' 3 ' aceptado (se ignoran espacios)",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n--- VENTA DE BOLETOS ---\nID de la ruta: Ruta: Guatemala -> Xela\nAsientos disponibles: 40 | Precio: Q50.00\nBoletos a vender (0 = cancelar): [!] Entrada invalida. Escriba un numero entero.\nBoletos a vender (0 = cancelar): \n[*] Venta exitosa. Total a cobrar: Q150.00\n\n--- VENTAS Y ASIGNACION ---\n1. Vender boletos por ID de ruta\n2. Recomendar ruta (origen/destino) y vender\n3. Cancelar boletos\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;3;50.00;150.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>6>83133>483133>4\n",
+  "checks": [
+   "Entrada invalida",
+   "Venta exitosa. Total a cobrar: Q150.00"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P39",
+  "categoria": "Normal",
+  "descripcion": "Cifrado para Tontos: respaldo automatico en rutas_cifradas.txt",
+  "entrada": "Registrar ruta 101 (Guatemala -> Xela) y guardar",
+  "esperado": "Se crea rutas_cifradas.txt con desplazamiento ASCII +3",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados en rutas.txt y respaldados con Cifrado para Tontos en rutas_cifradas.txt.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n",
+  "checks": [
+   "respaldados con Cifrado para Tontos"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P40",
+  "categoria": "Normal",
+  "descripcion": "Cifrado para Tontos: carga automatica de linea cifrada",
+  "entrada": "rutas.txt con linea cifrada (+3)",
+  "esperado": "Detecta formato cifrado, descifra (-3) y carga la ruta 101 con 3 pasajeros",
+  "ok": true,
+  "salida": "[*] Se cargaron 1 rutas.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- LISTADO DE RUTAS (1) ---\nID    Origen          Destino           Cap. Pasaj.  Disp.    Precio    Ingresos  Estado\n----------------------------------------------------------------------------------------\n101   Guatemala       Xela                40      3     37     50.00      150.00  Activa\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;3;50.00;150.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>6>83133>483133>4\n",
+  "checks": [
+   "Se cargaron 1 rutas",
+   "Guatemala",
+   "Xela",
+   "150.00"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P41",
+  "categoria": "Normal",
+  "descripcion": "Menu de Base de Datos y Cifrado para Tontos (Vista DB)",
+  "entrada": "Opcion 6 -> 1 con ruta 101 cargada",
+  "esperado": "Muestra estado de conexion DB y comparativa Normal vs Cifrado",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n--- REGISTRAR RUTA ---\nID de la ruta (1-9999): Origen: Destino: Capacidad de asientos (1-100): Precio del pasaje en Q (mayor a 0): \n[*] Ruta registrada con exito.\n\n--- GESTION DE RUTAS ---\n1. Registrar nueva ruta\n2. Listar todas las rutas\n3. Activar / desactivar ruta\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados en rutas.txt y respaldados con Cifrado para Tontos en rutas_cifradas.txt.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- CONEXION A BASE DE DATOS Y CIFRADO PARA TONTOS ---\n1. Ver registros en Base de Datos y su Cifrado para Tontos\n2. Probar Cifrado para Tontos con un texto en vivo\n0. Volver\nOpcion: \n--- VISTA DE BASE DE DATOS (CIFRADO PARA TONTOS) ---\nEstado de conexion DB (rutas.txt): CONECTADO\nArchivo de respaldo cifrado: rutas_cifradas.txt (Clave +3)\n\nRegistro [1] Normal  : 101;Guatemala;Xela;40;0;50.00;0.00;1\nRegistro [1] Cifrado : 434>Jxdwhpdod>[hod>73>3>83133>3133>4\n\n\n--- CONEXION A BASE DE DATOS Y CIFRADO PARA TONTOS ---\n1. Ver registros en Base de Datos y su Cifrado para Tontos\n2. Probar Cifrado para Tontos con un texto en vivo\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "101;Guatemala;Xela;40;0;50.00;0.00;1\n",
+  "archivo_cifrado": "434>Jxdwhpdod>[hod>73>3>83133>3133>4\n",
+  "checks": [
+   "CONECTADO",
+   "434>Jxdwhpdod>[hod>73>3>83133>3133>4"
+  ],
+  "filecheck": [],
+  "extra": ""
+ },
+ {
+  "codigo": "P42",
+  "categoria": "Normal",
+  "descripcion": "Demostracion en vivo de Cifrado para Tontos",
+  "entrada": "Opcion 6 -> 2, ingresar texto 'RutaBus12'",
+  "esperado": "Muestra original 'RutaBus12', cifrado 'UxwdExv45' y descifrado 'RutaBus12'",
+  "ok": true,
+  "salida": "[*] No hay archivo previo. Se inicia con datos vacios.\n\n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n--- CONEXION A BASE DE DATOS Y CIFRADO PARA TONTOS ---\n1. Ver registros en Base de Datos y su Cifrado para Tontos\n2. Probar Cifrado para Tontos con un texto en vivo\n0. Volver\nOpcion: \n--- DEMOSTRACION DE CIFRADO PARA TONTOS ---\nExplicacion: desplaza cada caracter +3 posiciones en la tabla ASCII al guardar y -3 al leer.\nEscriba un texto de prueba para cifrar: Texto original   : RutaBus12\nCifrado (+3)     : UxwdExv45\nDescifrado (-3)  : RutaBus12\n\n--- CONEXION A BASE DE DATOS Y CIFRADO PARA TONTOS ---\n1. Ver registros en Base de Datos y su Cifrado para Tontos\n2. Probar Cifrado para Tontos con un texto en vivo\n0. Volver\nOpcion: \n========================================\n  SISTEMA DE TRANSPORTE Y RUTAS (VAR. A)\n========================================\n1. Gestion de rutas\n2. Ventas y asignacion de boletos\n3. Busquedas\n4. Reportes\n5. Guardar datos\n6. Base de Datos y Cifrado para Tontos\n0. Guardar y salir\nSeleccione una opcion: \n[*] Datos guardados. Hasta pronto.\n",
+  "archivo": "",
+  "archivo_cifrado": "",
+  "checks": [
+   "Texto original   : RutaBus12",
+   "Cifrado (+3)     : UxwdExv45",
+   "Descifrado (-3)  : RutaBus12"
+  ],
+  "filecheck": [],
+  "extra": ""
+ }
+]

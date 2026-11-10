@@ -1,0 +1,11 @@
+PROYECTO FINAL - ALGORITMOS 2026 - UNIVERSIDAD MARIANO GALVEZ DE GUATEMALA
+Catedratico: Ing. Mag. Jhensser Aguirre
+
+Proyecto asignado : 12 - Transporte y rutas
+Variante          : A - Rutas de buses (carne terminado en numero PAR)
+Descripcion       : Administrar recursos de transporte mediante capacidades, recorridos y asignaciones.
+                    Registrar rutas, capacidad, pasajeros, ingresos y disponibilidad por recorrido.
+Reto algoritmico  : Seleccionar el recurso adecuado segun reglas y evitar asignaciones que excedan capacidad.
+Arquitectura C++17: Modularizada en carpetas (frontend/, backend/, database/) con "Cifrado para Tontos".
+Estudiante        : [Cristopher André Rivera Flores]
+Carne             : [2294-25-28336]
